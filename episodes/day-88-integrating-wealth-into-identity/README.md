@@ -14,7 +14,11 @@ First end-to-end **HyperFrames-only** trial for Sampurna Samruddhi (With Ease).
 
 ## Scene order
 
-Cover → Focus → Science → Protocol → Pro Tip → Teaching → Homework + **शुभं भवतु**
+Cover → Focus → Science → Protocol → Practices → Pro Tip → Teaching → Homework + **शुभं भवतु**
+
+## Launch-grade notes
+
+Day 88 is the reusable **product-launch** template for future days: hero-staged Protocol/Practices, kinetic type, flash seams, whisper caption rail, brand chrome every scene. See `STORYBOARD.md` + `frame.md` motion doctrine. Catalog blocks live under `compositions/` (restyle only — do not ship demo fonts).
 
 ## Reproduce
 

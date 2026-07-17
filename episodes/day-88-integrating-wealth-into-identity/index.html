@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Noto+Sans+Devanagari:wght@700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Noto+Sans+Devanagari:wght@700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
@@ -41,12 +41,14 @@
         height: 1080px;
         overflow: hidden;
         container-type: size;
+        background: var(--celestial);
       }
       .clip {
         position: absolute;
         inset: 0;
       }
 
+      /* —— Atmosphere —— */
       .scene-ground {
         position: absolute;
         inset: 0;
@@ -55,11 +57,18 @@
       .scene-ground.rich {
         background: linear-gradient(160deg, #123a48 0%, #0a2534 35%, var(--celestial) 70%, #030d14 100%);
       }
+      .depth-mid {
+        position: absolute;
+        inset: -4%;
+        pointer-events: none;
+        will-change: transform;
+      }
       .vignette {
         position: absolute;
         inset: 0;
         box-shadow: inset 0 0 18cqw 6cqw rgba(0, 0, 0, 0.55);
         pointer-events: none;
+        z-index: 3;
       }
       .halo {
         position: absolute;
@@ -90,6 +99,7 @@
         inset: 3.2cqw 3.8cqw;
         pointer-events: none;
         border: 1px solid rgba(201, 162, 39, 0.22);
+        z-index: 4;
       }
       .filigree::before,
       .filigree::after {
@@ -118,6 +128,7 @@
         border-color: var(--filigree);
         border-style: solid;
         pointer-events: none;
+        z-index: 4;
       }
       .filigree-tr {
         top: 3.2cqw;
@@ -130,13 +141,13 @@
         border-width: 0 0 2px 2px;
       }
 
-      /* —— Portrait medallions —— */
+      /* —— Brand chrome —— */
       .portrait {
         position: absolute;
         top: 4cqw;
         width: 11cqw;
         text-align: center;
-        z-index: 5;
+        z-index: 6;
       }
       .portrait.left {
         left: 4.5cqw;
@@ -181,8 +192,6 @@
         text-transform: uppercase;
         color: var(--gold);
       }
-
-      /* Compact brand chrome on every content scene */
       .brand-chrome .portrait {
         top: 3cqw;
         width: 7.4cqw;
@@ -211,7 +220,7 @@
         width: 5.6cqw;
         height: 5.6cqw;
         object-fit: contain;
-        z-index: 5;
+        z-index: 6;
         filter: drop-shadow(0 0 0.7cqw rgba(201, 162, 39, 0.4));
         pointer-events: none;
       }
@@ -236,7 +245,7 @@
         width: 5.8cqw;
         height: 5.8cqw;
         object-fit: contain;
-        z-index: 4;
+        z-index: 6;
         filter: drop-shadow(0 0 0.9cqw rgba(201, 162, 39, 0.45));
         pointer-events: none;
       }
@@ -247,7 +256,7 @@
         transform: translateX(-50%);
         width: 56%;
         text-align: center;
-        z-index: 6;
+        z-index: 7;
       }
       .day-kicker {
         margin: 0 0 0.6cqw;
@@ -296,6 +305,10 @@
         line-height: 1.12;
         color: var(--flare);
       }
+      .topic .tw {
+        display: inline-block;
+        opacity: 0;
+      }
       .tagline {
         margin: 1.1cqw 0 0;
         font-family: "Cormorant Garamond", serif;
@@ -320,20 +333,21 @@
         display: flex;
         justify-content: space-between;
         gap: 2cqw;
-        z-index: 2;
+        z-index: 5;
       }
 
-      /* —— Content scenes —— */
+      /* —— Content —— */
       .content-wrap {
         position: absolute;
         left: 8cqw;
         right: 8cqw;
         top: 16%;
-        bottom: 10%;
+        bottom: 12%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        z-index: 2;
+        z-index: 5;
+        will-change: transform;
       }
       .section-label {
         font-family: "Cinzel", serif;
@@ -395,7 +409,56 @@
         color: var(--gold);
         border-bottom: 1px solid var(--hairline);
         padding: 0.25cqw 0;
-        z-index: 5;
+        z-index: 6;
+      }
+
+      /* Kinetic slam overlays (caption-kinetic-slam pattern, brand restyle) */
+      .kinetic-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 12;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .kt-word {
+        position: absolute;
+        font-family: "Cinzel", serif;
+        font-weight: 700;
+        font-size: 9.5cqw;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--gold-bright);
+        text-shadow:
+          0 0 2cqw rgba(201, 162, 39, 0.55),
+          0 0 6cqw rgba(7, 24, 37, 0.8);
+        opacity: 0;
+        visibility: hidden;
+        line-height: 1;
+        text-align: center;
+        width: 90%;
+      }
+
+      /* Focus beat cards — scale-swap, not stacked bullets */
+      .beat-stack {
+        position: relative;
+        min-height: 28cqw;
+        max-width: 78cqw;
+      }
+      .beat-card {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .beat-card .body-lg {
+        font-size: 2.85cqw;
+        line-height: 1.35;
       }
 
       .science-nodes {
@@ -404,77 +467,94 @@
         top: 28%;
         width: 22cqw;
         height: 22cqw;
-        z-index: 2;
+        z-index: 5;
       }
       .science-nodes svg {
         width: 100%;
         height: 100%;
         overflow: visible;
       }
+      .science-nodes .edge {
+        stroke-dasharray: 120;
+        stroke-dashoffset: 120;
+      }
+      .sci-line {
+        opacity: 0.28;
+        filter: blur(0.4px);
+        transition: none;
+      }
+      .sci-line.is-active {
+        opacity: 1;
+        filter: none;
+      }
 
-      .ritual {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+      /* Protocol / Practices — hero stage (anti-checklist) */
+      .hero-stage {
+        position: relative;
+        width: 100%;
+        min-height: 32cqw;
         display: flex;
         flex-direction: column;
-        gap: 0;
-        max-width: 82cqw;
+        justify-content: center;
       }
-      .ritual li {
+      .hero-progress {
+        display: flex;
+        gap: 0.7cqw;
+        margin-bottom: 2.2cqw;
+      }
+      .hero-progress i {
+        width: 1.6cqw;
+        height: 2px;
+        background: rgba(201, 162, 39, 0.22);
+        display: block;
+      }
+      .hero-progress i.on {
+        background: var(--gold-bright);
+        box-shadow: 0 0 0.6cqw rgba(201, 162, 39, 0.55);
+      }
+      .hero-slot {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 4.5cqw;
+        opacity: 0;
+        visibility: hidden;
         display: grid;
-        grid-template-columns: 5.5cqw 1fr;
-        gap: 1.6cqw;
+        grid-template-columns: 8cqw 1fr;
+        gap: 2.2cqw;
         align-items: center;
-        padding: 1.05cqw 0;
-        border-bottom: 1px solid rgba(201, 162, 39, 0.18);
-        font-size: 1.75cqw;
-        line-height: 1.35;
-        color: var(--flare);
       }
-      .ritual li:last-child {
-        border-bottom: none;
-      }
-      .ordinal {
+      .hero-slot .ordinal {
         font-family: "Cinzel", serif;
-        font-size: 1.35cqw;
+        font-size: 4.2cqw;
         font-weight: 700;
-        letter-spacing: 0.08em;
         color: var(--gold-bright);
+        letter-spacing: 0.06em;
+        text-shadow: 0 0 1.5cqw rgba(201, 162, 39, 0.4);
+        line-height: 1;
       }
-      .ritual strong {
-        color: var(--gold-soft);
-        font-weight: 600;
+      .hero-slot .hero-copy {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.15em;
-      }
-
-      .litany {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 1.25cqw;
-        max-width: 78cqw;
-      }
-      .litany li {
-        display: flex;
-        align-items: baseline;
-        gap: 1.4cqw;
-        font-size: 1.95cqw;
-        line-height: 1.4;
+        font-size: 2.6cqw;
+        font-weight: 600;
+        line-height: 1.28;
         color: var(--flare);
       }
-      .spark {
-        flex: 0 0 auto;
-        width: 0.7cqw;
-        height: 0.7cqw;
-        margin-top: 0.65cqw;
+      .hero-slot .hero-copy strong {
+        color: var(--gold-soft);
+        font-weight: 700;
+      }
+      .hero-slot.practice-slot {
+        grid-template-columns: 2.2cqw 1fr;
+      }
+      .hero-slot .spark-lg {
+        width: 1.1cqw;
+        height: 1.1cqw;
         transform: rotate(45deg);
-        border: 1px solid var(--gold-soft);
-        box-shadow: 0 0 0.8cqw rgba(201, 162, 39, 0.4);
-        background: rgba(240, 215, 140, 0.25);
+        border: 1.5px solid var(--gold-soft);
+        box-shadow: 0 0 1.2cqw rgba(201, 162, 39, 0.55);
+        background: rgba(240, 215, 140, 0.28);
+        justify-self: center;
       }
 
       .tip-frame {
@@ -514,31 +594,41 @@
         background: rgba(212, 160, 168, 0.2);
         pointer-events: none;
       }
+      .wipe-line {
+        clip-path: inset(0 100% 0 0);
+        will-change: clip-path;
+      }
 
-      .teach {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 1.25cqw;
-        max-width: 80cqw;
+      .teach-hero {
+        position: relative;
+        min-height: 22cqw;
       }
-      .teach li {
+      .teach-card {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
         display: grid;
-        grid-template-columns: 3.2cqw 1fr;
-        gap: 1.4cqw;
+        grid-template-columns: 6cqw 1fr;
+        gap: 1.8cqw;
         align-items: baseline;
-        font-size: 1.95cqw;
-        line-height: 1.35;
-        color: var(--flare);
+        opacity: 0;
+        visibility: hidden;
       }
-      .teach .n {
+      .teach-card .n {
         font-family: "Cinzel", serif;
-        font-size: 1.15cqw;
+        font-size: 2.4cqw;
         font-weight: 700;
-        color: var(--gold);
+        color: var(--gold-bright);
         letter-spacing: 0.06em;
+      }
+      .teach-card .t {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3cqw;
+        font-weight: 600;
+        line-height: 1.25;
+        color: var(--flare);
       }
 
       .cta-stack {
@@ -604,6 +694,52 @@
         object-fit: contain;
         pointer-events: none;
       }
+
+      /* Flash-through-white style overlays (catalog technique, brand gold edge) */
+      .flash-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 40;
+        pointer-events: none;
+        opacity: 0;
+        background: radial-gradient(circle at 50% 45%, #fffef8 0%, #f7f3e9 35%, #e8c547 100%);
+        mix-blend-mode: screen;
+      }
+
+      /* Embedded caption rail — weight-shift / clip-wipe craft, celestial skin */
+      .caption-rail {
+        position: absolute;
+        left: 50%;
+        bottom: 4.2cqw;
+        transform: translateX(-50%);
+        z-index: 30;
+        width: min(78cqw, 1480px);
+        text-align: center;
+        pointer-events: none;
+      }
+      .cap-line {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 100%;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.55cqw;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        color: var(--flare);
+        background: rgba(7, 24, 37, 0.62);
+        border: 1px solid rgba(201, 162, 39, 0.28);
+        border-radius: 2px;
+        padding: 0.55cqw 1.4cqw;
+        opacity: 0;
+        visibility: hidden;
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+      }
+      .cap-line .em {
+        color: var(--gold-bright);
+        font-weight: 700;
+      }
     </style>
   </head>
   <body>
@@ -615,31 +751,33 @@
       data-height="1080"
       data-duration="111.61"
     >
-      <!-- 1 · Cover · 0–8.20 (whisper) -->
+      <!-- 1 · Cover · 0–8.20 -->
       <section id="scene-cover" class="clip" data-start="0" data-duration="8.2" data-track-index="1">
         <div class="scene-ground rich"></div>
-        <div class="stars" aria-hidden="true">
-          <svg viewBox="0 0 1920 1080" preserveAspectRatio="none">
-            <circle cx="154" cy="194" r="1.6" fill="#F7F3E9" opacity="0.75" />
-            <circle cx="422" cy="670" r="1.2" fill="#E8C547" opacity="0.55" />
-            <circle cx="672" cy="302" r="1.8" fill="#F7F3E9" opacity="0.55" />
-            <circle cx="922" cy="778" r="1.2" fill="#F7F3E9" opacity="0.45" />
-            <circle cx="1171" cy="151" r="1.5" fill="#E8C547" opacity="0.5" />
-            <circle cx="1421" cy="518" r="1.2" fill="#F7F3E9" opacity="0.55" />
-            <circle cx="1651" cy="238" r="1.9" fill="#F7F3E9" opacity="0.65" />
-            <circle cx="1766" cy="734" r="1.2" fill="#E8C547" opacity="0.4" />
-            <circle cx="269" cy="454" r="1.2" fill="#F7F3E9" opacity="0.4" />
-            <circle cx="768" cy="950" r="1.5" fill="#F7F3E9" opacity="0.35" />
-            <circle cx="1056" cy="432" r="1.2" fill="#E8C547" opacity="0.35" />
-            <circle cx="1306" cy="886" r="1.2" fill="#F7F3E9" opacity="0.4" />
-          </svg>
+        <div class="depth-mid" id="cover-depth">
+          <div class="stars" aria-hidden="true">
+            <svg viewBox="0 0 1920 1080" preserveAspectRatio="none">
+              <circle cx="154" cy="194" r="1.6" fill="#F7F3E9" opacity="0.75" />
+              <circle cx="422" cy="670" r="1.2" fill="#E8C547" opacity="0.55" />
+              <circle cx="672" cy="302" r="1.8" fill="#F7F3E9" opacity="0.55" />
+              <circle cx="922" cy="778" r="1.2" fill="#F7F3E9" opacity="0.45" />
+              <circle cx="1171" cy="151" r="1.5" fill="#E8C547" opacity="0.5" />
+              <circle cx="1421" cy="518" r="1.2" fill="#F7F3E9" opacity="0.55" />
+              <circle cx="1651" cy="238" r="1.9" fill="#F7F3E9" opacity="0.65" />
+              <circle cx="1766" cy="734" r="1.2" fill="#E8C547" opacity="0.4" />
+              <circle cx="269" cy="454" r="1.2" fill="#F7F3E9" opacity="0.4" />
+              <circle cx="768" cy="950" r="1.5" fill="#F7F3E9" opacity="0.35" />
+              <circle cx="1056" cy="432" r="1.2" fill="#E8C547" opacity="0.35" />
+              <circle cx="1306" cy="886" r="1.2" fill="#F7F3E9" opacity="0.4" />
+            </svg>
+          </div>
+          <div class="halo" id="cover-halo" data-layout-allow-overflow></div>
+          <img class="logo-mark" id="cover-logo-bg" src="assets/brand/logo.png" alt="" />
         </div>
-        <div class="halo" id="cover-halo"></div>
         <div class="vignette"></div>
         <div class="filigree"></div>
         <div class="filigree-tr"></div>
         <div class="filigree-bl"></div>
-        <img class="logo-mark" id="cover-logo-bg" src="assets/brand/logo.png" alt="" />
         <img class="cover-logo-seal" id="cover-logo" src="assets/brand/logo.png" alt="Sampurna Samruddhi" />
         <div class="portrait left" id="cover-cofounder">
           <div class="ring"><img src="assets/brand/co-founder.png" alt="Co-founder" /></div>
@@ -653,7 +791,10 @@
           <p class="day-kicker" data-layout-allow-overlap>Sampurna Samruddhi Upasana</p>
           <p class="day-num">DAY 88</p>
           <div class="ornament" id="cover-ornament"><span></span><i></i><span></span></div>
-          <h1 class="topic">Integrating Wealth Into Identity</h1>
+          <h1 class="topic" id="cover-topic">
+            <span class="tw">Integrating</span> <span class="tw">Wealth</span>
+            <span class="tw">Into</span> <span class="tw">Identity</span>
+          </h1>
           <p class="tagline">Today's focus — the final integration</p>
         </div>
         <div class="program-footer">
@@ -662,14 +803,14 @@
         </div>
       </section>
 
-      <!-- 2 · Focus · 8.20–19.30 -->
+      <!-- 2 · Focus · 8.20–19.30 — scale-swap beats -->
       <section id="scene-focus" class="clip" data-start="8.2" data-duration="11.1" data-track-index="1">
         <div class="scene-ground"></div>
         <div class="vignette"></div>
         <div class="filigree"></div>
         <div class="filigree-tr"></div>
         <div class="filigree-bl"></div>
-        <div class="brand-chrome">
+        <div class="brand-chrome" id="focus-chrome">
           <img class="logo-seal" src="assets/brand/logo.png" alt="" />
           <div class="portrait left">
             <div class="ring"><img src="assets/brand/co-founder.png" alt="Co-founder" /></div>
@@ -681,19 +822,31 @@
           </div>
         </div>
         <div class="day-chip">Day 88</div>
-        <div class="content-wrap">
+        <div class="content-wrap" id="focus-world">
           <p class="section-label" id="focus-label">Today's Focus</p>
           <div class="statement">
-            <p class="body-lg" id="focus-line-1">This is the final integration.</p>
-            <p class="body-lg" id="focus-line-2" style="margin-top: 1cqw">
-              Wealth is no longer something you are doing. It is who you
-              <span class="em-gold">are</span>.
-            </p>
-            <p class="body-lg" id="focus-line-3" style="margin-top: 1cqw">
-              This final week is about locking wealth into your identity —
-              permanently.
-            </p>
+            <div class="beat-stack">
+              <div class="beat-card" id="focus-beat-1" data-layout-allow-overlap>
+                <p class="body-lg">This is the final integration.</p>
+              </div>
+              <div class="beat-card" id="focus-beat-2" data-layout-allow-overlap>
+                <p class="body-lg">
+                  Wealth is no longer something you are doing.<br />
+                  It is who you <span class="em-gold">are</span>.
+                </p>
+              </div>
+              <div class="beat-card" id="focus-beat-3" data-layout-allow-overlap>
+                <p class="body-lg">
+                  This final week is about locking wealth into your identity —
+                  <span class="em-gold">permanently</span>.
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="kinetic-layer" aria-hidden="true">
+          <div class="kt-word" id="kt-are" data-layout-allow-overlap>Are</div>
+          <div class="kt-word" id="kt-identity" data-layout-allow-overlap>Identity</div>
         </div>
       </section>
 
@@ -716,17 +869,17 @@
           </div>
         </div>
         <div class="day-chip">Day 88</div>
-        <div class="content-wrap" style="right: 32cqw">
+        <div class="content-wrap" id="science-world" style="right: 32cqw">
           <p class="section-label" id="science-label">The Science</p>
           <div class="statement" id="science-panel">
-            <p class="body-md" id="sci-1">
+            <p class="body-md sci-line" id="sci-1">
               By Day Eighty-Eight, your neural pathways for wealth thinking are extremely strong.
             </p>
-            <p class="body-md" id="sci-2">Wealth thinking is becoming your default.</p>
-            <p class="body-md" id="sci-3">
+            <p class="body-md sci-line" id="sci-2">Wealth thinking is becoming your default.</p>
+            <p class="body-md sci-line" id="sci-3">
               But true integration means this new identity holds even under stress or challenge.
             </p>
-            <p class="body-md" id="sci-4">
+            <p class="body-md sci-line" id="sci-4">
               True wealth is when “I am someone wealthy” feels as natural as “I am a kind person,”
               or “I am intelligent.”
             </p>
@@ -734,14 +887,16 @@
         </div>
         <div class="science-nodes" id="science-nodes" aria-hidden="true">
           <svg viewBox="0 0 220 220" fill="none">
-            <circle cx="110" cy="110" r="22" stroke="#F0D78C" stroke-width="1.8" opacity="0.9" />
-            <circle cx="110" cy="110" r="8" fill="#C9A227" opacity="0.75" />
+            <circle id="node-core-ring" cx="110" cy="110" r="22" stroke="#F0D78C" stroke-width="1.8" opacity="0.9" />
+            <circle id="node-core" cx="110" cy="110" r="8" fill="#C9A227" opacity="0.75" />
             <circle cx="42" cy="58" r="11" stroke="#E8C547" stroke-width="1.5" />
             <circle cx="178" cy="52" r="11" stroke="#E8C547" stroke-width="1.5" />
             <circle cx="38" cy="158" r="11" stroke="#C9A227" stroke-width="1.5" />
             <circle cx="182" cy="164" r="11" stroke="#C9A227" stroke-width="1.5" />
             <circle cx="110" cy="28" r="7" stroke="#D4A0A8" stroke-width="1.2" opacity="0.7" />
             <path
+              class="edge"
+              id="edge-paths"
               d="M52 64 L92 98 M168 60 L128 96 M50 152 L92 124 M170 158 L128 126 M110 35 L110 88"
               stroke="#C9A227"
               stroke-opacity="0.45"
@@ -755,7 +910,7 @@
         </div>
       </section>
 
-      <!-- 4 · Protocol · 39.50–61.00 -->
+      <!-- 4 · Protocol · 39.50–61.00 — staged hero reveals -->
       <section id="scene-protocol" class="clip" data-start="39.5" data-duration="21.5" data-track-index="1">
         <div class="scene-ground"></div>
         <div class="vignette"></div>
@@ -774,34 +929,40 @@
           </div>
         </div>
         <div class="day-chip">Day 88</div>
-        <div class="content-wrap">
+        <div class="content-wrap" id="protocol-world">
           <p class="section-label" id="protocol-label">Today's Protocol</p>
-          <ul class="ritual">
-            <li id="step-1">
+          <div class="hero-stage">
+            <div class="hero-progress" id="protocol-progress" aria-hidden="true">
+              <i id="pp-1"></i><i id="pp-2"></i><i id="pp-3"></i><i id="pp-4"></i><i id="pp-5"></i>
+            </div>
+            <div class="hero-slot" id="step-1" data-layout-allow-overlap>
               <span class="ordinal">I</span>
-              <span><strong>Assess</strong> — Does “I am a wealthy person” feel true?</span>
-            </li>
-            <li id="step-2">
+              <span class="hero-copy"><strong>Assess</strong> — Does “I am a wealthy person” feel true?</span>
+            </div>
+            <div class="hero-slot" id="step-2" data-layout-allow-overlap>
               <span class="ordinal">II</span>
-              <span><strong>Identify</strong> — Any remaining limiting beliefs</span>
-            </li>
-            <li id="step-3">
+              <span class="hero-copy"><strong>Identify</strong> — Any remaining limiting beliefs</span>
+            </div>
+            <div class="hero-slot" id="step-3" data-layout-allow-overlap>
               <span class="ordinal">III</span>
-              <span><strong>Challenge</strong> — Where the old identity tries to resurface</span>
-            </li>
-            <li id="step-4">
+              <span class="hero-copy"><strong>Challenge</strong> — Where the old identity tries to resurface</span>
+            </div>
+            <div class="hero-slot" id="step-4" data-layout-allow-overlap>
               <span class="ordinal">IV</span>
-              <span><strong>Reinforce</strong> — Daily practices that cement this identity</span>
-            </li>
-            <li id="step-5">
+              <span class="hero-copy"><strong>Reinforce</strong> — Daily practices that cement this identity</span>
+            </div>
+            <div class="hero-slot" id="step-5" data-layout-allow-overlap>
               <span class="ordinal">V</span>
-              <span><strong>Celebrate</strong> — Identity integration is complete</span>
-            </li>
-          </ul>
+              <span class="hero-copy"><strong>Celebrate</strong> — Identity integration is complete</span>
+            </div>
+          </div>
+        </div>
+        <div class="kinetic-layer" aria-hidden="true">
+          <div class="kt-word" id="kt-celebrate" style="font-size: 7.5cqw" data-layout-allow-overlap>Celebrate</div>
         </div>
       </section>
 
-      <!-- 5 · Practices · 61.00–72.60 -->
+      <!-- 5 · Practices · 61.00–72.60 — one practice at a time -->
       <section id="scene-practices" class="clip" data-start="61" data-duration="11.6" data-track-index="1">
         <div class="scene-ground"></div>
         <div class="vignette"></div>
@@ -820,23 +981,33 @@
           </div>
         </div>
         <div class="day-chip">Day 88</div>
-        <div class="content-wrap">
+        <div class="content-wrap" id="practices-world">
           <p class="section-label" id="practices-label">Identity Practices</p>
-          <ul class="litany">
-            <li id="practice-1">
-              <span class="spark"></span><span>In the morning, say “I am a wealth creator.”</span>
-            </li>
-            <li id="practice-2">
-              <span class="spark"></span><span>Make decisions from a wealthy identity.</span>
-            </li>
-            <li id="practice-3">
-              <span class="spark"></span><span>Respond as a wealthy person.</span>
-            </li>
-            <li id="practice-4">
-              <span class="spark"></span><span>Speak from a wealthy identity.</span>
-            </li>
-            <li id="practice-5"><span class="spark"></span><span>And give from abundance.</span></li>
-          </ul>
+          <div class="hero-stage">
+            <div class="hero-progress" id="practices-progress" aria-hidden="true">
+              <i id="prp-1"></i><i id="prp-2"></i><i id="prp-3"></i><i id="prp-4"></i><i id="prp-5"></i>
+            </div>
+            <div class="hero-slot practice-slot" id="practice-1" data-layout-allow-overlap>
+              <span class="spark-lg"></span>
+              <span class="hero-copy wipe-line">In the morning, say “I am a wealth creator.”</span>
+            </div>
+            <div class="hero-slot practice-slot" id="practice-2" data-layout-allow-overlap>
+              <span class="spark-lg"></span>
+              <span class="hero-copy wipe-line">Make decisions from a wealthy identity.</span>
+            </div>
+            <div class="hero-slot practice-slot" id="practice-3" data-layout-allow-overlap>
+              <span class="spark-lg"></span>
+              <span class="hero-copy wipe-line">Respond as a wealthy person.</span>
+            </div>
+            <div class="hero-slot practice-slot" id="practice-4" data-layout-allow-overlap>
+              <span class="spark-lg"></span>
+              <span class="hero-copy wipe-line">Speak from a wealthy identity.</span>
+            </div>
+            <div class="hero-slot practice-slot" id="practice-5" data-layout-allow-overlap>
+              <span class="spark-lg"></span>
+              <span class="hero-copy wipe-line">And give from abundance.</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -863,15 +1034,15 @@
           <div class="tip-frame" id="tip-panel">
             <div class="lotus-whisper"></div>
             <p class="section-label">Pro Tip</p>
-            <p class="body-lg" id="tip-line-1">Identity is the deepest level of change.</p>
-            <p class="body-lg" id="tip-line-2" style="margin-top: 1.1cqw">
+            <p class="body-lg wipe-line" id="tip-line-1">Identity is the deepest level of change.</p>
+            <p class="body-lg wipe-line" id="tip-line-2" style="margin-top: 1.1cqw">
               When who you are matches wealth, external results follow automatically.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- 7 · Teaching · 80.50–94.80 -->
+      <!-- 7 · Teaching · 80.50–94.80 — hero cards -->
       <section id="scene-teaching" class="clip" data-start="80.5" data-duration="14.3" data-track-index="1">
         <div class="scene-ground"></div>
         <div class="vignette"></div>
@@ -890,21 +1061,18 @@
           </div>
         </div>
         <div class="day-chip">Day 88</div>
-        <div class="content-wrap">
+        <div class="content-wrap" id="teach-world">
           <p class="section-label" id="teach-label">Daily Teaching Points</p>
-          <ul class="teach">
-            <li id="bullet-1"><span class="n">01</span><span>You are a wealthy person now</span></li>
-            <li id="bullet-2">
-              <span class="n">02</span><span>Identity is more powerful than behavior</span>
-            </li>
-            <li id="bullet-3">
-              <span class="n">03</span><span>A wealthy person's mindset is your default</span>
-            </li>
-            <li id="bullet-4">
-              <span class="n">04</span><span>You have completed identity integration</span>
-            </li>
-            <li id="bullet-5"><span class="n">05</span><span>This is who you are — forever</span></li>
-          </ul>
+          <div class="teach-hero">
+            <div class="teach-card" id="bullet-1" data-layout-allow-overlap><span class="n">01</span><span class="t">You are a wealthy person now</span></div>
+            <div class="teach-card" id="bullet-2" data-layout-allow-overlap><span class="n">02</span><span class="t">Identity is more powerful than behavior</span></div>
+            <div class="teach-card" id="bullet-3" data-layout-allow-overlap><span class="n">03</span><span class="t">A wealthy person's mindset is your default</span></div>
+            <div class="teach-card" id="bullet-4" data-layout-allow-overlap><span class="n">04</span><span class="t">You have completed identity integration</span></div>
+            <div class="teach-card" id="bullet-5" data-layout-allow-overlap><span class="n">05</span><span class="t">This is who you are — forever</span></div>
+          </div>
+        </div>
+        <div class="kinetic-layer" aria-hidden="true">
+          <div class="kt-word" id="kt-forever" style="font-size: 8cqw" data-layout-allow-overlap>Forever</div>
         </div>
       </section>
 
@@ -927,7 +1095,7 @@
             <div class="badge">Founder</div>
           </div>
         </div>
-        <div class="content-wrap" style="text-align: left; top: 14%">
+        <div class="content-wrap" id="hw-world" style="text-align: left; top: 14%">
           <p class="section-label" id="hw-label">Tonight's Homework</p>
           <ul class="cta-stack" id="hw-stack">
             <li id="hw-1">Write today's learnings in your <strong>diary</strong></li>
@@ -948,6 +1116,48 @@
         </div>
       </section>
 
+      <!-- Flash overlays (flash-through-white technique) — sparse cinematic seams -->
+      <div class="flash-overlay clip" id="flash-a" data-start="19.15" data-duration="0.45" data-track-index="20"></div>
+      <div class="flash-overlay clip" id="flash-b" data-start="39.35" data-duration="0.45" data-track-index="20"></div>
+      <div class="flash-overlay clip" id="flash-c" data-start="72.45" data-duration="0.4" data-track-index="20"></div>
+      <div class="flash-overlay clip" id="flash-d" data-start="94.65" data-duration="0.45" data-track-index="20"></div>
+
+      <!-- Caption rail (whisper-synced; /embedded-captions + caption-weight-shift craft) -->
+      <div class="caption-rail clip" data-start="0" data-duration="111.61" data-track-index="25" id="caption-rail">
+        <div class="cap-line" id="cap-0">Welcome to Day 88 of the Sampurna Samruddhi Wealth Mastery Program.</div>
+        <div class="cap-line" id="cap-1">Today's focus — <span class="em">Integrating Wealth Into Identity</span></div>
+        <div class="cap-line" id="cap-2">This is the final integration.</div>
+        <div class="cap-line" id="cap-3">Wealth is no longer something you are doing.</div>
+        <div class="cap-line" id="cap-4">It is who you <span class="em">are</span>.</div>
+        <div class="cap-line" id="cap-5">Locking wealth into your identity — permanently.</div>
+        <div class="cap-line" id="cap-6">Neural pathways for wealth thinking are extremely strong.</div>
+        <div class="cap-line" id="cap-7">Wealth thinking is becoming your <span class="em">default</span>.</div>
+        <div class="cap-line" id="cap-8">This new identity holds even under stress or challenge.</div>
+        <div class="cap-line" id="cap-9">“I am someone wealthy” feels as natural as kindness.</div>
+        <div class="cap-line" id="cap-10">Today's protocol.</div>
+        <div class="cap-line" id="cap-11"><span class="em">Assess</span> — does “I am a wealthy person” feel true?</div>
+        <div class="cap-line" id="cap-12"><span class="em">Identify</span> remaining limiting beliefs.</div>
+        <div class="cap-line" id="cap-13"><span class="em">Challenge</span> where the old identity resurfaces.</div>
+        <div class="cap-line" id="cap-14"><span class="em">Reinforce</span> daily practices that cement identity.</div>
+        <div class="cap-line" id="cap-15"><span class="em">Celebrate</span> — identity integration is complete.</div>
+        <div class="cap-line" id="cap-16">Say “I am a wealth creator.”</div>
+        <div class="cap-line" id="cap-17">Make decisions from a wealthy identity.</div>
+        <div class="cap-line" id="cap-18">Respond as a wealthy person.</div>
+        <div class="cap-line" id="cap-19">Speak from wealth — and give from abundance.</div>
+        <div class="cap-line" id="cap-20">Identity is the deepest level of change.</div>
+        <div class="cap-line" id="cap-21">When who you are matches wealth, results follow.</div>
+        <div class="cap-line" id="cap-22">You are a wealthy person now.</div>
+        <div class="cap-line" id="cap-23">Identity is more powerful than behavior.</div>
+        <div class="cap-line" id="cap-24">A wealthy mindset is your default.</div>
+        <div class="cap-line" id="cap-25">You have completed identity integration.</div>
+        <div class="cap-line" id="cap-26">This is who you are — <span class="em">forever</span>.</div>
+        <div class="cap-line" id="cap-27">Write today's learnings in your diary.</div>
+        <div class="cap-line" id="cap-28">Send your notes to your mentor on WhatsApp.</div>
+        <div class="cap-line" id="cap-29">Subscribe, like, and share.</div>
+        <div class="cap-line" id="cap-30">Visit fabselfhelp.com</div>
+        <div class="cap-line" id="cap-31"><span class="em">शुभं भवतु</span></div>
+      </div>
+
       <audio
         id="narration"
         src="narration.wav"
@@ -961,70 +1171,239 @@
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
 
-      /* Cover 0–8.2 — whisper: welcome 0.0, focus topic 4.4 */
-      tl.from("#cover-halo", { opacity: 0, scale: 0.86, duration: 1.2, ease: "power2.out" }, 0.1);
-      tl.from("#cover-logo-bg", { opacity: 0, scale: 0.92, duration: 1.0, ease: "power2.out" }, 0.2);
-      tl.from("#cover-logo", { opacity: 0, scale: 0.9, duration: 0.9, ease: "power2.out" }, 0.25);
-      tl.from("#cover-cofounder", { opacity: 0, y: 18, duration: 0.9, ease: "power2.out" }, 0.3);
-      tl.from("#cover-founder", { opacity: 0, y: 18, duration: 0.9, ease: "power2.out" }, 0.45);
-      tl.from("#cover-masthead .day-kicker", { opacity: 0, y: 10, duration: 0.6, ease: "power2.out" }, 0.5);
-      tl.from("#cover-masthead .day-num", { opacity: 0, y: 24, duration: 0.9, ease: "power2.out" }, 0.65);
-      tl.from("#cover-ornament", { opacity: 0, scaleX: 0.4, duration: 0.55, ease: "power2.out" }, 1.0);
-      tl.from("#cover-masthead .topic", { opacity: 0, y: 14, duration: 0.75, ease: "power2.out" }, 4.4);
-      tl.from("#cover-masthead .tagline", { opacity: 0, y: 10, duration: 0.65, ease: "power2.out" }, 5.5);
+      function showBeat(id, t, dur) {
+        tl.set(id, { visibility: "visible" }, t);
+        tl.fromTo(
+          id,
+          { opacity: 0, scale: 0.92, y: 28, filter: "blur(6px)" },
+          { opacity: 1, scale: 1, y: 0, filter: "blur(0px)", duration: dur || 0.55, ease: "power3.out" },
+          t,
+        );
+      }
+      function hideBeat(id, t) {
+        tl.to(id, { opacity: 0, scale: 1.04, filter: "blur(4px)", duration: 0.28, ease: "power2.in" }, t);
+        tl.set(id, { visibility: "hidden" }, t + 0.28);
+      }
+      function kineticSlam(id, t, hold) {
+        tl.set(id, { visibility: "visible" }, t);
+        tl.fromTo(
+          id,
+          { opacity: 0, scale: 0.55, y: 40 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.28, ease: "power3.out" },
+          t,
+        );
+        tl.to(id, { opacity: 0, scale: 1.08, duration: 0.18, ease: "power2.in" }, t + (hold || 0.55));
+        tl.set(id, { visibility: "hidden" }, t + (hold || 0.55) + 0.18);
+      }
+      function flashPulse(id, t) {
+        tl.fromTo(id, { opacity: 0 }, { opacity: 0.92, duration: 0.12, ease: "power2.out" }, t);
+        tl.to(id, { opacity: 0, duration: 0.32, ease: "power2.in" }, t + 0.12);
+      }
+      function heroIn(id, t) {
+        tl.set(id, { visibility: "visible" }, t);
+        tl.fromTo(
+          id,
+          { opacity: 0, x: -36, scale: 0.94 },
+          { opacity: 1, x: 0, scale: 1, duration: 0.5, ease: "power3.out" },
+          t,
+        );
+      }
+      function heroOut(id, t) {
+        tl.to(id, { opacity: 0, x: 24, scale: 1.03, duration: 0.28, ease: "power2.in" }, t);
+        tl.set(id, { visibility: "hidden" }, t + 0.28);
+      }
+      function wipeIn(sel, t) {
+        tl.fromTo(
+          sel,
+          { clipPath: "inset(0 100% 0 0)", opacity: 1 },
+          { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.out" },
+          t,
+        );
+      }
+      function cap(id, start, end) {
+        tl.set(id, { visibility: "visible" }, start);
+        tl.fromTo(
+          id,
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.22, ease: "power2.out" },
+          start,
+        );
+        tl.to(id, { opacity: 0, duration: 0.16, ease: "power1.in" }, Math.max(start + 0.3, end - 0.16));
+        tl.set(id, { visibility: "hidden" }, end);
+      }
 
-      /* Focus 8.2 — lines at 8.28, 10.40, 14.72 */
-      tl.from("#focus-label", { opacity: 0, x: -14, duration: 0.5, ease: "power2.out" }, 8.3);
-      tl.from("#focus-line-1", { opacity: 0, y: 14, duration: 0.55, ease: "power2.out" }, 8.35);
-      tl.from("#focus-line-2", { opacity: 0, y: 14, duration: 0.65, ease: "power2.out" }, 10.4);
-      tl.from("#focus-line-3", { opacity: 0, y: 14, duration: 0.65, ease: "power2.out" }, 14.72);
+      /* —— Cover 0–8.2 — multi-phase camera + kinetic topic —— */
+      tl.from("#cover-halo", { opacity: 0, scale: 0.82, duration: 1.35, ease: "power3.out" }, 0.08);
+      tl.fromTo(
+        "#cover-depth",
+        { scale: 1.08, x: -18, y: 10 },
+        { scale: 1, x: 0, y: 0, duration: 7.6, ease: "power1.inOut" },
+        0,
+      );
+      tl.from("#cover-logo-bg", { opacity: 0, scale: 0.9, duration: 1.1, ease: "power3.out" }, 0.18);
+      tl.from("#cover-logo", { opacity: 0, scale: 0.88, duration: 0.95, ease: "power3.out" }, 0.22);
+      tl.from("#cover-cofounder", { opacity: 0, y: 22, duration: 0.95, ease: "power3.out" }, 0.28);
+      tl.from("#cover-founder", { opacity: 0, y: 22, duration: 0.95, ease: "power3.out" }, 0.42);
+      tl.from("#cover-masthead .day-kicker", { opacity: 0, y: 12, duration: 0.55, ease: "power3.out" }, 0.48);
+      tl.from("#cover-masthead .day-num", { opacity: 0, y: 36, scale: 0.92, duration: 0.95, ease: "power3.out" }, 0.62);
+      tl.from("#cover-ornament", { opacity: 0, scaleX: 0.35, duration: 0.55, ease: "power3.out" }, 1.05);
+      tl.to("#cover-topic .tw", { opacity: 1, y: 0, duration: 0.45, stagger: 0.1, ease: "power3.out" }, 4.4);
+      tl.set("#cover-topic .tw", { y: 16 }, 0);
+      tl.from("#cover-masthead .tagline", { opacity: 0, y: 12, duration: 0.6, ease: "power3.out" }, 5.55);
+      /* subtle chrome jitter hold */
+      tl.to("#cover-logo", { y: "+=2", duration: 1.2, yoyo: true, repeat: 1, ease: "sine.inOut" }, 6.2);
 
-      /* Science 19.3 — beats 19.46, 25.02, 26.74, 32.12 */
-      tl.from("#science-label", { opacity: 0, x: -12, duration: 0.5, ease: "power2.out" }, 19.4);
-      tl.from("#science-nodes", { opacity: 0, scale: 0.88, duration: 1.0, ease: "power2.out" }, 19.6);
-      tl.from("#sci-1", { opacity: 0, y: 12, duration: 0.6, ease: "power2.out" }, 19.5);
-      tl.from("#sci-2", { opacity: 0, y: 12, duration: 0.55, ease: "power2.out" }, 25.02);
-      tl.from("#sci-3", { opacity: 0, y: 12, duration: 0.6, ease: "power2.out" }, 26.74);
-      tl.from("#sci-4", { opacity: 0, y: 12, duration: 0.7, ease: "power2.out" }, 32.12);
+      /* —— Focus 8.2 — scale-swap beats + kinetic ARE —— */
+      tl.from("#focus-label", { opacity: 0, x: -18, duration: 0.45, ease: "power3.out" }, 8.3);
+      tl.from("#focus-chrome", { opacity: 0, duration: 0.5, ease: "power2.out" }, 8.25);
+      tl.fromTo("#focus-world", { scale: 1.04 }, { scale: 1, duration: 10.5, ease: "power1.out" }, 8.2);
+      showBeat("#focus-beat-1", 8.35, 0.55);
+      hideBeat("#focus-beat-1", 10.15);
+      showBeat("#focus-beat-2", 10.4, 0.6);
+      kineticSlam("#kt-are", 12.05, 0.5);
+      hideBeat("#focus-beat-2", 14.45);
+      showBeat("#focus-beat-3", 14.72, 0.65);
+      kineticSlam("#kt-identity", 16.9, 0.55);
+      hideBeat("#focus-beat-3", 18.95);
 
-      /* Protocol 39.5 — label 39.64; steps 41.16, 44.54, 48.22, 53.28, 57.64 */
-      tl.from("#protocol-label", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 39.64);
-      tl.from("#step-1", { opacity: 0, x: -16, duration: 0.5, ease: "power2.out" }, 41.16);
-      tl.from("#step-2", { opacity: 0, x: -16, duration: 0.5, ease: "power2.out" }, 44.54);
-      tl.from("#step-3", { opacity: 0, x: -16, duration: 0.5, ease: "power2.out" }, 48.22);
-      tl.from("#step-4", { opacity: 0, x: -16, duration: 0.5, ease: "power2.out" }, 53.28);
-      tl.from("#step-5", { opacity: 0, x: -16, duration: 0.5, ease: "power2.out" }, 57.64);
+      /* —— Science —— depth-of-field lines + SVG draw —— */
+      flashPulse("#flash-a", 19.18);
+      tl.from("#science-label", { opacity: 0, x: -14, duration: 0.45, ease: "power3.out" }, 19.4);
+      tl.fromTo("#science-world", { scale: 1.03, x: -8 }, { scale: 1, x: 0, duration: 19.5, ease: "none" }, 19.3);
+      tl.from("#science-nodes", { opacity: 0, scale: 0.86, duration: 1.1, ease: "power3.out" }, 19.55);
+      tl.to("#edge-paths", { strokeDashoffset: 0, duration: 1.4, ease: "power2.out" }, 19.7);
+      tl.fromTo("#node-core-ring", { scale: 0.7, transformOrigin: "110px 110px" }, { scale: 1, duration: 1.2, ease: "power3.out" }, 19.8);
 
-      /* Practices 61.0 — 61.16, 62.94, 65.28, 67.66, 69.56 */
-      tl.from("#practices-label", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 61.16);
-      tl.from("#practice-1", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 62.0);
-      tl.from("#practice-2", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 65.28);
-      tl.from("#practice-3", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 67.66);
-      tl.from("#practice-4", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 69.56);
-      tl.from("#practice-5", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 70.9);
+      tl.fromTo("#sci-1", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 19.5);
+      tl.to("#sci-1", { opacity: 0.28, filter: "blur(0.5px)", duration: 0.35 }, 24.85);
 
-      /* Tip 72.6 — 72.72, 76.46 */
-      tl.from("#tip-panel", { opacity: 0, y: 14, scale: 0.97, duration: 0.7, ease: "power2.out" }, 72.72);
-      tl.from("#tip-line-1", { opacity: 0, y: 10, duration: 0.5, ease: "power2.out" }, 72.85);
-      tl.from("#tip-line-2", { opacity: 0, y: 10, duration: 0.55, ease: "power2.out" }, 76.46);
+      tl.fromTo("#sci-2", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 25.02);
+      tl.to("#sci-2", { opacity: 0.28, filter: "blur(0.5px)", duration: 0.3 }, 26.55);
 
-      /* Teaching 80.5 — 80.66 intro; bullets 82.66…92.86 */
-      tl.from("#teach-label", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 80.66);
-      tl.from("#bullet-1", { opacity: 0, y: 12, duration: 0.4, ease: "power2.out" }, 82.66);
-      tl.from("#bullet-2", { opacity: 0, y: 12, duration: 0.4, ease: "power2.out" }, 84.56);
-      tl.from("#bullet-3", { opacity: 0, y: 12, duration: 0.4, ease: "power2.out" }, 87.18);
-      tl.from("#bullet-4", { opacity: 0, y: 12, duration: 0.4, ease: "power2.out" }, 90.18);
-      tl.from("#bullet-5", { opacity: 0, y: 12, duration: 0.4, ease: "power2.out" }, 92.86);
+      tl.fromTo("#sci-3", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 26.74);
+      tl.to("#sci-3", { opacity: 0.28, filter: "blur(0.5px)", duration: 0.3 }, 31.9);
 
-      /* Homework 94.8 — 94.98, 98.52, 102.92, 104.92, blessing 107.48 */
-      tl.from("#hw-label", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 94.98);
-      tl.from("#hw-1", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 95.1);
-      tl.from("#hw-2", { opacity: 0, y: 10, duration: 0.5, ease: "power2.out" }, 98.52);
-      tl.from("#hw-3", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 102.92);
-      tl.from("#hw-4", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 104.92);
-      tl.from("#hw-contact", { opacity: 0, duration: 0.45, ease: "power2.out" }, 105.5);
-      tl.from("#hw-halo", { opacity: 0, scale: 0.9, duration: 0.9, ease: "power2.out" }, 107.2);
-      tl.from("#hw-blessing", { opacity: 0, y: 16, duration: 0.9, ease: "power2.out" }, 107.48);
+      tl.fromTo("#sci-4", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 32.12);
+
+      /* —— Protocol — one hero step at a time —— */
+      flashPulse("#flash-b", 39.38);
+      tl.from("#protocol-label", { opacity: 0, y: 12, duration: 0.4, ease: "power3.out" }, 39.64);
+      tl.fromTo("#protocol-world", { scale: 1.035 }, { scale: 1, duration: 20.8, ease: "power1.out" }, 39.5);
+
+      heroIn("#step-1", 41.16);
+      tl.to("#pp-1", { backgroundColor: "#f0d78c", boxShadow: "0 0 0.6cqw rgba(201, 162, 39, 0.55)", duration: 0.2 }, 41.16);
+      heroOut("#step-1", 44.25);
+      heroIn("#step-2", 44.54);
+      tl.to("#pp-2", { backgroundColor: "#f0d78c", boxShadow: "0 0 0.6cqw rgba(201, 162, 39, 0.55)", duration: 0.2 }, 44.54);
+      heroOut("#step-2", 47.95);
+      heroIn("#step-3", 48.22);
+      tl.to("#pp-3", { backgroundColor: "#f0d78c", boxShadow: "0 0 0.6cqw rgba(201, 162, 39, 0.55)", duration: 0.2 }, 48.22);
+      heroOut("#step-3", 52.95);
+      heroIn("#step-4", 53.28);
+      tl.to("#pp-4", { backgroundColor: "#f0d78c", boxShadow: "0 0 0.6cqw rgba(201, 162, 39, 0.55)", duration: 0.2 }, 53.28);
+      heroOut("#step-4", 57.35);
+      heroIn("#step-5", 57.64);
+      tl.to("#pp-5", { backgroundColor: "#f0d78c", boxShadow: "0 0 0.6cqw rgba(201, 162, 39, 0.55)", duration: 0.2 }, 57.64);
+      kineticSlam("#kt-celebrate", 58.9, 0.6);
+      heroOut("#step-5", 60.7);
+
+      /* —— Practices — clip-wipe hero swaps —— */
+      tl.from("#practices-label", { opacity: 0, y: 10, duration: 0.4, ease: "power3.out" }, 61.16);
+      tl.fromTo("#practices-world", { scale: 1.03 }, { scale: 1, duration: 11.2, ease: "power1.out" }, 61);
+
+      function practiceBeat(id, bar, tIn, tOut) {
+        tl.set(id, { visibility: "visible" }, tIn);
+        tl.fromTo(id, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, tIn);
+        wipeIn(id + " .wipe-line", tIn + 0.02);
+        tl.to(bar, { backgroundColor: "#f0d78c", boxShadow: "0 0 0.6cqw rgba(201, 162, 39, 0.55)", duration: 0.2 }, tIn);
+        if (tOut) {
+          tl.to(id, { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, tOut);
+          tl.set(id, { visibility: "hidden" }, tOut + 0.25);
+        }
+      }
+      practiceBeat("#practice-1", "#prp-1", 62.0, 65.05);
+      practiceBeat("#practice-2", "#prp-2", 65.28, 67.4);
+      practiceBeat("#practice-3", "#prp-3", 67.66, 69.35);
+      practiceBeat("#practice-4", "#prp-4", 69.56, 70.7);
+      practiceBeat("#practice-5", "#prp-5", 70.9, 72.35);
+
+      /* —— Tip —— */
+      flashPulse("#flash-c", 72.48);
+      tl.from("#tip-panel", { opacity: 0, y: 18, scale: 0.96, duration: 0.7, ease: "power3.out" }, 72.72);
+      wipeIn("#tip-line-1", 72.85);
+      wipeIn("#tip-line-2", 76.46);
+      tl.to("#tip-panel", { boxShadow: "0 0 3cqw rgba(201,162,39,0.35)", duration: 0.8, ease: "sine.inOut" }, 74.2);
+
+      /* —— Teaching —— hero cards —— */
+      tl.from("#teach-label", { opacity: 0, y: 10, duration: 0.4, ease: "power3.out" }, 80.66);
+      tl.fromTo("#teach-world", { scale: 1.03 }, { scale: 1, duration: 13.8, ease: "power1.out" }, 80.5);
+
+      function teachBeat(id, tIn, tOut) {
+        tl.set(id, { visibility: "visible" }, tIn);
+        tl.fromTo(
+          id,
+          { opacity: 0, x: -28, scale: 0.94 },
+          { opacity: 1, x: 0, scale: 1, duration: 0.42, ease: "power3.out" },
+          tIn,
+        );
+        if (tOut) {
+          tl.to(id, { opacity: 0, x: 18, scale: 1.02, duration: 0.24, ease: "power2.in" }, tOut);
+          tl.set(id, { visibility: "hidden" }, tOut + 0.24);
+        }
+      }
+      teachBeat("#bullet-1", 82.66, 84.35);
+      teachBeat("#bullet-2", 84.56, 86.95);
+      teachBeat("#bullet-3", 87.18, 89.95);
+      teachBeat("#bullet-4", 90.18, 92.65);
+      teachBeat("#bullet-5", 92.86, 93.4);
+      kineticSlam("#kt-forever", 93.55, 0.55);
+
+      /* —— Homework + blessing —— */
+      flashPulse("#flash-d", 94.68);
+      tl.from("#hw-label", { opacity: 0, y: 12, duration: 0.4, ease: "power3.out" }, 94.98);
+      tl.from("#hw-1", { opacity: 0, y: 14, x: -10, duration: 0.45, ease: "power3.out" }, 95.1);
+      tl.from("#hw-2", { opacity: 0, y: 14, x: -10, duration: 0.5, ease: "power3.out" }, 98.52);
+      tl.from("#hw-3", { opacity: 0, y: 14, x: -10, duration: 0.45, ease: "power3.out" }, 102.92);
+      tl.from("#hw-4", { opacity: 0, y: 14, x: -10, duration: 0.45, ease: "power3.out" }, 104.92);
+      tl.from("#hw-contact", { opacity: 0, duration: 0.4, ease: "power2.out" }, 105.5);
+      tl.to("#hw-stack, #hw-label, #hw-contact", { opacity: 0.2, duration: 0.55, ease: "power2.inOut" }, 106.9);
+      tl.from("#hw-halo", { opacity: 0, scale: 0.86, duration: 1.0, ease: "power3.out" }, 107.15);
+      tl.from("#hw-blessing", { opacity: 0, y: 22, scale: 0.94, duration: 0.95, ease: "power3.out" }, 107.48);
+      tl.to("#hw-blessing", { scale: 1.02, duration: 2.8, ease: "sine.inOut" }, 108.5);
+
+      /* —— Caption rail (whisper-aligned segments) —— */
+      cap("#cap-0", 0.0, 3.84);
+      cap("#cap-1", 4.4, 7.28);
+      cap("#cap-2", 8.28, 10.2);
+      cap("#cap-3", 10.4, 12.0);
+      cap("#cap-4", 12.05, 13.6);
+      cap("#cap-5", 14.72, 18.9);
+      cap("#cap-6", 19.46, 24.8);
+      cap("#cap-7", 25.02, 26.6);
+      cap("#cap-8", 26.74, 31.9);
+      cap("#cap-9", 32.12, 39.2);
+      cap("#cap-10", 39.64, 41.0);
+      cap("#cap-11", 41.16, 44.4);
+      cap("#cap-12", 44.54, 48.1);
+      cap("#cap-13", 48.22, 53.1);
+      cap("#cap-14", 53.28, 57.5);
+      cap("#cap-15", 57.64, 60.8);
+      cap("#cap-16", 62.0, 65.1);
+      cap("#cap-17", 65.28, 67.5);
+      cap("#cap-18", 67.66, 69.4);
+      cap("#cap-19", 69.56, 72.4);
+      cap("#cap-20", 72.85, 76.3);
+      cap("#cap-21", 76.46, 80.3);
+      cap("#cap-22", 82.66, 84.4);
+      cap("#cap-23", 84.56, 87.0);
+      cap("#cap-24", 87.18, 90.0);
+      cap("#cap-25", 90.18, 92.7);
+      cap("#cap-26", 92.86, 94.6);
+      cap("#cap-27", 95.1, 98.4);
+      cap("#cap-28", 98.52, 102.8);
+      cap("#cap-29", 102.92, 104.8);
+      cap("#cap-30", 104.92, 107.2);
+      cap("#cap-31", 107.48, 111.2);
 
       window.__timelines["main"] = tl;
     </script>

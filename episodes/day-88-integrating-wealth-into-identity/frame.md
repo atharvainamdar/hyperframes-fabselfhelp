@@ -14,9 +14,10 @@ aliases:
   - FRAME.md
   - design.md / DESIGN.md (brand bible; lose to frame.md when both exist)
 source_design: DESIGN.md
-workflow: /faceless-explainer · daily Day-N wealth ceremonial infographic
+workflow: /faceless-explainer spine · /product-launch-video motion · launch-grade Day-N template
 channel: Sampurna Samruddhi (With Ease) / Sampurna Samruddhi Upasana
 site: https://fabselfhelp.com/
+template: day-88 — reusable launch-grade HyperFrames episode
 
 colors:
   celestial: "#071825"
@@ -65,24 +66,38 @@ spacing:
   safe-caption-bottom: "8cqh"
 
 motion:
-  energy: ceremonial-calm
+  energy: ceremonial-launch
   easing:
-    entry: "power2.out"
-    exit: "power1.in"
+    entry: "power3.out"
+    exit: "power2.in"
     ambient: "sine.inOut"
+    camera: "power1.inOut"
   duration:
-    entrance: 1.0
+    entrance: 0.55
     hold: 2.5
-    transition: 1.1
+    transition: 0.45
+    kinetic-hold: 0.55
   atmosphere:
-    - starfield-drift
+    - starfield-parallax
     - gold-sunburst-halo
     - filigree-corners
     - subtle-grain
+    - flash-through-white-seams
+  catalog:
+    - flash-through-white
+    - caption-kinetic-slam
+    - caption-clip-wipe
+    - caption-weight-shift
+    - lt-mask-reveal
   doctrine: >
-    Two to three intentional motions per scene — never random fades.
-    Reveal with the voice. Ceremonial rises, halo pulses, sequential ritual steps.
-    No slam, glitch, confetti, neon SaaS glow, or floating badge stickers.
+    Launch-grade (anti-PPT): VO-paced reveals in the back ~50% of each scene;
+    never dump a full bullet page then freeze. Protocol/Practices = staged hero
+    swaps (scale-swap), not checklists. Kinetic Cinzel hits for peak words.
+    Subtle camera push/parallax on depth layers. Sparse gold-white flash seams
+    between major sections only. Caption rail whisper-synced. Brand chrome
+    (logo + dual medallion portraits) on every frame — may micro-jitter, never vanish.
+    Smooth power3 over bouncy. Prefer stillness to lazy breathing.
+    No glitch, confetti, neon SaaS purple, or floating badge stickers.
 
 components:
   celestial-ground:
@@ -170,10 +185,12 @@ Full-frame statement. Gold left filigree bar. Large serif body. No card panel.
 Statement + abstract constellation nodes (gold/teal). Mechanism in plain language.
 
 ### 4 · Protocol
-Five ritual steps with gold ordinals and hairline separators; sequential reveal with VO.
+**Staged hero reveals** — one ritual step fills the stage at a time (large ordinal + Cormorant copy);
+progress ticks accumulate; previous step exits before the next enters. Never a static five-row checklist.
 
 ### 5 · Practices
-Five identity practices as a vertical litany with gold spark marks — distinct beat from Pro Tip.
+**Clip-wipe hero swaps** — one practice at a time with L→R wipe and gold spark; progress ticks.
+Distinct beat from Pro Tip.
 
 ### 6 · Pro Tip
 One sentence inside a thin gold frame; optional faint lotus whisper — never a sticker badge.
@@ -184,8 +201,17 @@ Five teachings with gold ordinals; sequential fades.
 ### 8 · Homework + Blessing
 CTA stack → contact → blessing halo hold with logo presence.
 
+## Launch-grade template (reuse for Day N)
+
+1. Lock VO + `whisper_transcript.json` first; cut scenes to speech.
+2. Write time-coded shot sequences in `STORYBOARD.md` (hook → mid → exit) per `/product-launch-video` visual-design.
+3. Install useful catalog blocks (`npx hyperframes add …`) and **restyle** to celestial tokens — never ship Anton/Poppins demo skins.
+4. Protocol/Practices/Teaching → hero staging; Focus → scale-swap statements; Cover → camera pull + staggered topic.
+5. Optional caption rail from whisper segments; keep bottom safe zone.
+6. `npx hyperframes lint && check && render` → commit + push.
+
 ## Do / Don't
 
-**Do:** celestial field every frame; gold as sacred accent; real portraits in medallion rings; reveal with VO; end on शुभं भवतु.
+**Do:** celestial field every frame; gold as sacred accent; real portraits in medallion rings; reveal with VO; staged heroes; kinetic peak words; sparse flash seams; end on शुभं भवतु.
 
-**Don't:** purple neon SaaS; Inter/Roboto; centered bullet cards as the whole video; floating promo stickers; inventing DAY N or claims; HeyGen talking heads; cream Theme B on wealth days.
+**Don't:** purple neon SaaS; Inter/Roboto; full-page static bullet lists; checklist Protocol slides; floating promo stickers; inventing DAY N or claims; HeyGen Avatar/Studio; cream Theme B on wealth days.

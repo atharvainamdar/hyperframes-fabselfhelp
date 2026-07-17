@@ -65,24 +65,26 @@ spacing:
   safe-caption-bottom: "8cqh"
 
 motion:
-  energy: ceremonial-calm
+  energy: ceremonial-launch
   easing:
-    entry: "power2.out"
-    exit: "power1.in"
+    entry: "power3.out"
+    exit: "power2.in"
     ambient: "sine.inOut"
+    camera: "power1.inOut"
   duration:
-    entrance: 1.0
+    entrance: 0.55
     hold: 2.5
-    transition: 1.1
+    transition: 0.45
   atmosphere:
-    - starfield-drift
+    - starfield-parallax
     - gold-sunburst-halo
     - filigree-corners
     - subtle-grain
+    - flash-through-white-seams
   doctrine: >
-    Two to three intentional motions per scene — never random fades.
-    Reveal with the voice. Ceremonial rises, halo pulses, sequential ritual steps.
-    No slam, glitch, confetti, neon SaaS glow, or floating badge stickers.
+    Launch-grade template (see episodes/day-88): VO-paced reveals, staged Protocol/Practices
+    heroes, kinetic peak words, sparse flash seams, caption rail, brand chrome every scene.
+    Smooth power3 over bouncy. Prefer stillness to lazy breathing. No PPT bullet dumps.
 
 components:
   celestial-ground:

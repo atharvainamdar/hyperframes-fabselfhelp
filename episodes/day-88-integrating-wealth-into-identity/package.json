@@ -1,0 +1,16 @@
+{
+  "name": "day-88-integrating-wealth-into-identity",
+  "version": "1.0.0",
+  "description": "First end-to-end **HyperFrames-only** trial for Sampurna Samruddhi (With Ease).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hyperframes/shader-transitions": "^0.7.61",
+    "gsap": "^3.15.0"
+  }
+}
