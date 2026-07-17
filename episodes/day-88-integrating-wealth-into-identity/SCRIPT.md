@@ -9,6 +9,9 @@
 
 ## Narration (spoken verbatim)
 
+> On-screen copy in `index.html` tracks these lines beat-for-beat.  
+> Scene cuts + GSAP reveals locked to `whisper_transcript.json` from `narration.wav`.
+
 Welcome to Day Eighty-Eight of the Sampurna Samruddhi Wealth Mastery Program.
 
 Today's focus: Integrating Wealth Into Identity.
@@ -26,3 +29,18 @@ Pro tip: Identity is the deepest level of change. When who you are matches wealt
 Remember these teaching points. You are a wealthy person now. Identity is more powerful than behavior. A wealthy person's mindset is your default. You have completed identity integration. This is who you are — forever.
 
 Before you close, write today's learnings in your diary. Before sleep, send a photo of your notes to your mentor on WhatsApp. Subscribe, like, and share. Visit fabselfhelp.com. शुभं भवतु.
+
+---
+
+## Scene ↔ VO map (whisper-aligned)
+
+| Scene | Start | On-screen tracks |
+| --- | ---: | --- |
+| Cover | 0.0 | Welcome + topic title |
+| Focus | 8.2 | Final integration / who you are / permanently |
+| Science | 19.3 | Neural pathways → default → stress → natural identity |
+| Protocol | 39.5 | Five ritual steps as spoken |
+| Practices | 61.0 | Five identity practices as spoken |
+| Pro Tip | 72.6 | Deepest level + results follow |
+| Teaching | 80.5 | Five teaching points as spoken |
+| Homework | 94.8 | Diary → WhatsApp → subscribe → site → blessing |

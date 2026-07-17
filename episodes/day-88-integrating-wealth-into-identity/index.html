@@ -47,7 +47,6 @@
         inset: 0;
       }
 
-      /* —— Celestial stage (linear + SVG only — avoid stacked radial-gradients for capture) —— */
       .scene-ground {
         position: absolute;
         inset: 0;
@@ -131,13 +130,13 @@
         border-width: 0 0 2px 2px;
       }
 
-      /* —— Portraits as medallions —— */
+      /* —— Portrait medallions —— */
       .portrait {
         position: absolute;
         top: 4cqw;
         width: 11cqw;
         text-align: center;
-        z-index: 3;
+        z-index: 5;
       }
       .portrait.left {
         left: 4.5cqw;
@@ -183,6 +182,40 @@
         color: var(--gold);
       }
 
+      /* Compact brand chrome on every content scene */
+      .brand-chrome .portrait {
+        top: 3cqw;
+        width: 7.4cqw;
+      }
+      .brand-chrome .portrait.left {
+        left: 4cqw;
+      }
+      .brand-chrome .portrait.right {
+        right: 4cqw;
+      }
+      .brand-chrome .portrait .ring {
+        width: 6.8cqw;
+        height: 6.8cqw;
+        padding: 0.28cqw;
+      }
+      .brand-chrome .portrait .badge {
+        margin-top: 0.55cqw;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+      }
+      .logo-seal {
+        position: absolute;
+        left: 50%;
+        top: 2.6cqw;
+        transform: translateX(-50%);
+        width: 5.6cqw;
+        height: 5.6cqw;
+        object-fit: contain;
+        z-index: 5;
+        filter: drop-shadow(0 0 0.7cqw rgba(201, 162, 39, 0.4));
+        pointer-events: none;
+      }
+
       /* —— Cover —— */
       .logo-mark {
         position: absolute;
@@ -195,14 +228,26 @@
         object-fit: contain;
         pointer-events: none;
       }
+      .cover-logo-seal {
+        position: absolute;
+        left: 50%;
+        top: 3.2cqw;
+        transform: translateX(-50%);
+        width: 5.8cqw;
+        height: 5.8cqw;
+        object-fit: contain;
+        z-index: 4;
+        filter: drop-shadow(0 0 0.9cqw rgba(201, 162, 39, 0.45));
+        pointer-events: none;
+      }
       .masthead {
         position: absolute;
         left: 50%;
-        top: 16%;
+        top: 20%;
         transform: translateX(-50%);
         width: 56%;
         text-align: center;
-        z-index: 2;
+        z-index: 6;
       }
       .day-kicker {
         margin: 0 0 0.6cqw;
@@ -283,8 +328,8 @@
         position: absolute;
         left: 8cqw;
         right: 8cqw;
-        top: 14%;
-        bottom: 12%;
+        top: 16%;
+        bottom: 10%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -297,7 +342,7 @@
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--gold);
-        margin: 0 0 2.2cqw;
+        margin: 0 0 1.8cqw;
       }
       .statement {
         position: relative;
@@ -317,18 +362,21 @@
       .body-lg {
         margin: 0;
         font-family: "Source Serif 4", Georgia, serif;
-        font-size: 2.55cqw;
+        font-size: 2.4cqw;
         font-weight: 400;
         line-height: 1.48;
         color: var(--flare);
       }
       .body-md {
-        margin: 0;
+        margin: 0 0 1.1cqw;
         font-family: "Source Serif 4", Georgia, serif;
-        font-size: 2.1cqw;
-        line-height: 1.5;
+        font-size: 1.95cqw;
+        line-height: 1.45;
         color: var(--flare);
         max-width: 72cqw;
+      }
+      .body-md:last-child {
+        margin-bottom: 0;
       }
       .em-gold {
         color: var(--gold-soft);
@@ -337,25 +385,25 @@
       }
       .day-chip {
         position: absolute;
-        top: 3.8cqw;
-        right: 5cqw;
+        left: 50%;
+        top: 9cqw;
+        transform: translateX(-50%);
         font-family: "Cinzel", serif;
-        font-size: 0.9cqw;
+        font-size: 0.85cqw;
         letter-spacing: 0.16em;
         text-transform: uppercase;
         color: var(--gold);
         border-bottom: 1px solid var(--hairline);
-        padding: 0.35cqw 0;
-        z-index: 3;
+        padding: 0.25cqw 0;
+        z-index: 5;
       }
 
-      /* Science constellation */
       .science-nodes {
         position: absolute;
         right: 7cqw;
-        top: 26%;
-        width: 24cqw;
-        height: 24cqw;
+        top: 28%;
+        width: 22cqw;
+        height: 22cqw;
         z-index: 2;
       }
       .science-nodes svg {
@@ -364,7 +412,6 @@
         overflow: visible;
       }
 
-      /* Protocol ritual steps */
       .ritual {
         list-style: none;
         margin: 0;
@@ -379,9 +426,9 @@
         grid-template-columns: 5.5cqw 1fr;
         gap: 1.6cqw;
         align-items: center;
-        padding: 1.15cqw 0;
+        padding: 1.05cqw 0;
         border-bottom: 1px solid rgba(201, 162, 39, 0.18);
-        font-size: 1.85cqw;
+        font-size: 1.75cqw;
         line-height: 1.35;
         color: var(--flare);
       }
@@ -402,21 +449,20 @@
         font-size: 1.15em;
       }
 
-      /* Practices litany */
       .litany {
         list-style: none;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 1.35cqw;
+        gap: 1.25cqw;
         max-width: 78cqw;
       }
       .litany li {
         display: flex;
         align-items: baseline;
         gap: 1.4cqw;
-        font-size: 2cqw;
+        font-size: 1.95cqw;
         line-height: 1.4;
         color: var(--flare);
       }
@@ -431,11 +477,10 @@
         background: rgba(240, 215, 140, 0.25);
       }
 
-      /* Pro tip lockup */
       .tip-frame {
         position: relative;
         max-width: 76cqw;
-        padding: 3.2cqw 3.8cqw;
+        padding: 3cqw 3.6cqw;
         border: 1px solid var(--hairline);
         background: rgba(12, 42, 56, 0.45);
       }
@@ -470,14 +515,13 @@
         pointer-events: none;
       }
 
-      /* Teaching */
       .teach {
         list-style: none;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 1.4cqw;
+        gap: 1.25cqw;
         max-width: 80cqw;
       }
       .teach li {
@@ -485,7 +529,7 @@
         grid-template-columns: 3.2cqw 1fr;
         gap: 1.4cqw;
         align-items: baseline;
-        font-size: 2.05cqw;
+        font-size: 1.95cqw;
         line-height: 1.35;
         color: var(--flare);
       }
@@ -497,15 +541,14 @@
         letter-spacing: 0.06em;
       }
 
-      /* Homework */
       .cta-stack {
         list-style: none;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 1.2cqw;
-        font-size: 1.85cqw;
+        gap: 1.05cqw;
+        font-size: 1.7cqw;
         color: var(--flare);
         max-width: 78cqw;
       }
@@ -528,22 +571,22 @@
         font-weight: 600;
       }
       .contact {
-        margin-top: 2cqw;
+        margin-top: 1.6cqw;
         font-family: "Cinzel", serif;
-        font-size: 1cqw;
+        font-size: 0.95cqw;
         letter-spacing: 0.08em;
         color: var(--flare-muted);
         text-transform: uppercase;
       }
       .blessing-wrap {
-        margin-top: 2.4cqw;
+        margin-top: 1.8cqw;
         text-align: center;
         position: relative;
       }
       .blessing {
         margin: 0;
         font-family: "Noto Sans Devanagari", "Cormorant Garamond", serif;
-        font-size: 4.4cqw;
+        font-size: 4cqw;
         font-weight: 700;
         color: var(--gold-bright);
         text-shadow: 0 0 2cqw rgba(201, 162, 39, 0.4);
@@ -555,8 +598,8 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        width: 18cqw;
-        height: 18cqw;
+        width: 16cqw;
+        height: 16cqw;
         opacity: 0.12;
         object-fit: contain;
         pointer-events: none;
@@ -572,10 +615,10 @@
       data-height="1080"
       data-duration="111.61"
     >
-      <!-- 1 · Cover -->
-      <section id="scene-cover" class="clip" data-start="0" data-duration="10.96" data-track-index="1">
+      <!-- 1 · Cover · 0–8.20 (whisper) -->
+      <section id="scene-cover" class="clip" data-start="0" data-duration="8.2" data-track-index="1">
         <div class="scene-ground rich"></div>
-        <div class="stars" id="cover-stars" aria-hidden="true">
+        <div class="stars" aria-hidden="true">
           <svg viewBox="0 0 1920 1080" preserveAspectRatio="none">
             <circle cx="154" cy="194" r="1.6" fill="#F7F3E9" opacity="0.75" />
             <circle cx="422" cy="670" r="1.2" fill="#E8C547" opacity="0.55" />
@@ -596,7 +639,8 @@
         <div class="filigree"></div>
         <div class="filigree-tr"></div>
         <div class="filigree-bl"></div>
-        <img class="logo-mark" id="cover-logo" src="assets/brand/logo.png" alt="" />
+        <img class="logo-mark" id="cover-logo-bg" src="assets/brand/logo.png" alt="" />
+        <img class="cover-logo-seal" id="cover-logo" src="assets/brand/logo.png" alt="Sampurna Samruddhi" />
         <div class="portrait left" id="cover-cofounder">
           <div class="ring"><img src="assets/brand/co-founder.png" alt="Co-founder" /></div>
           <div class="badge">Co-Founder</div>
@@ -610,7 +654,7 @@
           <p class="day-num">DAY 88</p>
           <div class="ornament" id="cover-ornament"><span></span><i></i><span></span></div>
           <h1 class="topic">Integrating Wealth Into Identity</h1>
-          <p class="tagline">The final integration — wealth becomes who you are</p>
+          <p class="tagline">Today's focus — the final integration</p>
         </div>
         <div class="program-footer">
           <span>90-Day Sampatti (Wealth) Mastery Program</span>
@@ -618,41 +662,73 @@
         </div>
       </section>
 
-      <!-- 2 · Focus -->
-      <section id="scene-focus" class="clip" data-start="10.96" data-duration="12.95" data-track-index="1">
+      <!-- 2 · Focus · 8.20–19.30 -->
+      <section id="scene-focus" class="clip" data-start="8.2" data-duration="11.1" data-track-index="1">
         <div class="scene-ground"></div>
         <div class="vignette"></div>
         <div class="filigree"></div>
         <div class="filigree-tr"></div>
         <div class="filigree-bl"></div>
+        <div class="brand-chrome">
+          <img class="logo-seal" src="assets/brand/logo.png" alt="" />
+          <div class="portrait left">
+            <div class="ring"><img src="assets/brand/co-founder.png" alt="Co-founder" /></div>
+            <div class="badge">Co-Founder</div>
+          </div>
+          <div class="portrait right">
+            <div class="ring"><img src="assets/brand/founder.png" alt="Founder" /></div>
+            <div class="badge">Founder</div>
+          </div>
+        </div>
         <div class="day-chip">Day 88</div>
         <div class="content-wrap">
           <p class="section-label" id="focus-label">Today's Focus</p>
-          <div class="statement" id="focus-panel">
-            <p class="body-lg">
-              Wealth is no longer something you're doing — it's who you
-              <span class="em-gold">are</span>. This final week locks wealth into your identity
+          <div class="statement">
+            <p class="body-lg" id="focus-line-1">This is the final integration.</p>
+            <p class="body-lg" id="focus-line-2" style="margin-top: 1cqw">
+              Wealth is no longer something you are doing. It is who you
+              <span class="em-gold">are</span>.
+            </p>
+            <p class="body-lg" id="focus-line-3" style="margin-top: 1cqw">
+              This final week is about locking wealth into your identity —
               permanently.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- 3 · Science -->
-      <section id="scene-science" class="clip" data-start="23.91" data-duration="21.92" data-track-index="1">
+      <!-- 3 · Science · 19.30–39.50 -->
+      <section id="scene-science" class="clip" data-start="19.3" data-duration="20.2" data-track-index="1">
         <div class="scene-ground"></div>
         <div class="vignette"></div>
         <div class="filigree"></div>
         <div class="filigree-tr"></div>
         <div class="filigree-bl"></div>
+        <div class="brand-chrome">
+          <img class="logo-seal" src="assets/brand/logo.png" alt="" />
+          <div class="portrait left">
+            <div class="ring"><img src="assets/brand/co-founder.png" alt="Co-founder" /></div>
+            <div class="badge">Co-Founder</div>
+          </div>
+          <div class="portrait right">
+            <div class="ring"><img src="assets/brand/founder.png" alt="Founder" /></div>
+            <div class="badge">Founder</div>
+          </div>
+        </div>
         <div class="day-chip">Day 88</div>
-        <div class="content-wrap" style="right: 34cqw">
+        <div class="content-wrap" style="right: 32cqw">
           <p class="section-label" id="science-label">The Science</p>
           <div class="statement" id="science-panel">
-            <p class="body-md">
-              By Day 88, neural pathways for wealth thinking are extremely strong. Integration means
-              this identity holds under stress — so “I am someone wealthy” feels as natural as kindness
-              or intelligence.
+            <p class="body-md" id="sci-1">
+              By Day Eighty-Eight, your neural pathways for wealth thinking are extremely strong.
+            </p>
+            <p class="body-md" id="sci-2">Wealth thinking is becoming your default.</p>
+            <p class="body-md" id="sci-3">
+              But true integration means this new identity holds even under stress or challenge.
+            </p>
+            <p class="body-md" id="sci-4">
+              True wealth is when “I am someone wealthy” feels as natural as “I am a kind person,”
+              or “I am intelligent.”
             </p>
           </div>
         </div>
@@ -679,13 +755,24 @@
         </div>
       </section>
 
-      <!-- 4 · Protocol -->
-      <section id="scene-protocol" class="clip" data-start="45.83" data-duration="19.93" data-track-index="1">
+      <!-- 4 · Protocol · 39.50–61.00 -->
+      <section id="scene-protocol" class="clip" data-start="39.5" data-duration="21.5" data-track-index="1">
         <div class="scene-ground"></div>
         <div class="vignette"></div>
         <div class="filigree"></div>
         <div class="filigree-tr"></div>
         <div class="filigree-bl"></div>
+        <div class="brand-chrome">
+          <img class="logo-seal" src="assets/brand/logo.png" alt="" />
+          <div class="portrait left">
+            <div class="ring"><img src="assets/brand/co-founder.png" alt="Co-founder" /></div>
+            <div class="badge">Co-Founder</div>
+          </div>
+          <div class="portrait right">
+            <div class="ring"><img src="assets/brand/founder.png" alt="Founder" /></div>
+            <div class="badge">Founder</div>
+          </div>
+        </div>
         <div class="day-chip">Day 88</div>
         <div class="content-wrap">
           <p class="section-label" id="protocol-label">Today's Protocol</p>
@@ -700,11 +787,11 @@
             </li>
             <li id="step-3">
               <span class="ordinal">III</span>
-              <span><strong>Challenge</strong> — Where does the old identity resurface?</span>
+              <span><strong>Challenge</strong> — Where the old identity tries to resurface</span>
             </li>
             <li id="step-4">
               <span class="ordinal">IV</span>
-              <span><strong>Reinforce</strong> — Daily practices that cement identity</span>
+              <span><strong>Reinforce</strong> — Daily practices that cement this identity</span>
             </li>
             <li id="step-5">
               <span class="ordinal">V</span>
@@ -714,84 +801,142 @@
         </div>
       </section>
 
-      <!-- 5 · Practices -->
-      <section id="scene-practices" class="clip" data-start="65.76" data-duration="13.95" data-track-index="1">
+      <!-- 5 · Practices · 61.00–72.60 -->
+      <section id="scene-practices" class="clip" data-start="61" data-duration="11.6" data-track-index="1">
         <div class="scene-ground"></div>
         <div class="vignette"></div>
         <div class="filigree"></div>
         <div class="filigree-tr"></div>
         <div class="filigree-bl"></div>
+        <div class="brand-chrome">
+          <img class="logo-seal" src="assets/brand/logo.png" alt="" />
+          <div class="portrait left">
+            <div class="ring"><img src="assets/brand/co-founder.png" alt="Co-founder" /></div>
+            <div class="badge">Co-Founder</div>
+          </div>
+          <div class="portrait right">
+            <div class="ring"><img src="assets/brand/founder.png" alt="Founder" /></div>
+            <div class="badge">Founder</div>
+          </div>
+        </div>
         <div class="day-chip">Day 88</div>
         <div class="content-wrap">
           <p class="section-label" id="practices-label">Identity Practices</p>
           <ul class="litany">
-            <li id="practice-1"><span class="spark"></span><span>Morning: “I am a wealth creator.”</span></li>
-            <li id="practice-2"><span class="spark"></span><span>Decide from a wealthy identity.</span></li>
-            <li id="practice-3"><span class="spark"></span><span>Respond as a wealthy person.</span></li>
-            <li id="practice-4"><span class="spark"></span><span>Speak from abundance.</span></li>
-            <li id="practice-5"><span class="spark"></span><span>Give from abundance.</span></li>
+            <li id="practice-1">
+              <span class="spark"></span><span>In the morning, say “I am a wealth creator.”</span>
+            </li>
+            <li id="practice-2">
+              <span class="spark"></span><span>Make decisions from a wealthy identity.</span>
+            </li>
+            <li id="practice-3">
+              <span class="spark"></span><span>Respond as a wealthy person.</span>
+            </li>
+            <li id="practice-4">
+              <span class="spark"></span><span>Speak from a wealthy identity.</span>
+            </li>
+            <li id="practice-5"><span class="spark"></span><span>And give from abundance.</span></li>
           </ul>
         </div>
       </section>
 
-      <!-- 6 · Pro Tip -->
-      <section id="scene-tip" class="clip" data-start="79.71" data-duration="9.97" data-track-index="1">
+      <!-- 6 · Pro Tip · 72.60–80.50 -->
+      <section id="scene-tip" class="clip" data-start="72.6" data-duration="7.9" data-track-index="1">
         <div class="scene-ground"></div>
         <div class="vignette"></div>
         <div class="filigree"></div>
         <div class="filigree-tr"></div>
         <div class="filigree-bl"></div>
+        <div class="brand-chrome">
+          <img class="logo-seal" src="assets/brand/logo.png" alt="" />
+          <div class="portrait left">
+            <div class="ring"><img src="assets/brand/co-founder.png" alt="Co-founder" /></div>
+            <div class="badge">Co-Founder</div>
+          </div>
+          <div class="portrait right">
+            <div class="ring"><img src="assets/brand/founder.png" alt="Founder" /></div>
+            <div class="badge">Founder</div>
+          </div>
+        </div>
         <div class="day-chip">Day 88</div>
         <div class="content-wrap">
           <div class="tip-frame" id="tip-panel">
             <div class="lotus-whisper"></div>
             <p class="section-label">Pro Tip</p>
-            <p class="body-lg">
-              Identity is the deepest level of change. When who you are matches wealth, external
-              results follow automatically.
+            <p class="body-lg" id="tip-line-1">Identity is the deepest level of change.</p>
+            <p class="body-lg" id="tip-line-2" style="margin-top: 1.1cqw">
+              When who you are matches wealth, external results follow automatically.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- 7 · Teaching -->
-      <section id="scene-teaching" class="clip" data-start="89.68" data-duration="11.96" data-track-index="1">
+      <!-- 7 · Teaching · 80.50–94.80 -->
+      <section id="scene-teaching" class="clip" data-start="80.5" data-duration="14.3" data-track-index="1">
         <div class="scene-ground"></div>
         <div class="vignette"></div>
         <div class="filigree"></div>
         <div class="filigree-tr"></div>
         <div class="filigree-bl"></div>
+        <div class="brand-chrome">
+          <img class="logo-seal" src="assets/brand/logo.png" alt="" />
+          <div class="portrait left">
+            <div class="ring"><img src="assets/brand/co-founder.png" alt="Co-founder" /></div>
+            <div class="badge">Co-Founder</div>
+          </div>
+          <div class="portrait right">
+            <div class="ring"><img src="assets/brand/founder.png" alt="Founder" /></div>
+            <div class="badge">Founder</div>
+          </div>
+        </div>
         <div class="day-chip">Day 88</div>
         <div class="content-wrap">
           <p class="section-label" id="teach-label">Daily Teaching Points</p>
           <ul class="teach">
             <li id="bullet-1"><span class="n">01</span><span>You are a wealthy person now</span></li>
-            <li id="bullet-2"><span class="n">02</span><span>Identity is more powerful than behavior</span></li>
-            <li id="bullet-3"><span class="n">03</span><span>A wealthy person's mindset is your default</span></li>
-            <li id="bullet-4"><span class="n">04</span><span>You have completed identity integration</span></li>
+            <li id="bullet-2">
+              <span class="n">02</span><span>Identity is more powerful than behavior</span>
+            </li>
+            <li id="bullet-3">
+              <span class="n">03</span><span>A wealthy person's mindset is your default</span>
+            </li>
+            <li id="bullet-4">
+              <span class="n">04</span><span>You have completed identity integration</span>
+            </li>
             <li id="bullet-5"><span class="n">05</span><span>This is who you are — forever</span></li>
           </ul>
         </div>
       </section>
 
-      <!-- 8 · Homework + Blessing -->
-      <section id="scene-homework" class="clip" data-start="101.64" data-duration="9.97" data-track-index="1">
+      <!-- 8 · Homework + Blessing · 94.80–111.61 -->
+      <section id="scene-homework" class="clip" data-start="94.8" data-duration="16.81" data-track-index="1">
         <div class="scene-ground rich"></div>
         <div class="halo" id="hw-halo"></div>
         <div class="vignette"></div>
         <div class="filigree"></div>
         <div class="filigree-tr"></div>
         <div class="filigree-bl"></div>
-        <div class="content-wrap" style="text-align: left">
+        <div class="brand-chrome">
+          <img class="logo-seal" src="assets/brand/logo.png" alt="" />
+          <div class="portrait left">
+            <div class="ring"><img src="assets/brand/co-founder.png" alt="Co-founder" /></div>
+            <div class="badge">Co-Founder</div>
+          </div>
+          <div class="portrait right">
+            <div class="ring"><img src="assets/brand/founder.png" alt="Founder" /></div>
+            <div class="badge">Founder</div>
+          </div>
+        </div>
+        <div class="content-wrap" style="text-align: left; top: 14%">
           <p class="section-label" id="hw-label">Tonight's Homework</p>
           <ul class="cta-stack" id="hw-stack">
-            <li>Write today's learnings in your <strong>diary</strong></li>
-            <li>
-              Before sleep, send a photo of your notes on WhatsApp:
+            <li id="hw-1">Write today's learnings in your <strong>diary</strong></li>
+            <li id="hw-2">
+              Before sleep, send a photo of your notes to your mentor on WhatsApp:
               <strong>+91 78880 48281</strong>
             </li>
-            <li><strong>Subscribe</strong>, like, and share</li>
-            <li>Visit <strong>fabselfhelp.com</strong></li>
+            <li id="hw-3"><strong>Subscribe</strong>, like, and share</li>
+            <li id="hw-4">Visit <strong>fabselfhelp.com</strong></li>
           </ul>
           <p class="contact" id="hw-contact">
             fabselfhelp.com · tcprc.energyscience@gmail.com · +91 78880 48281
@@ -816,51 +961,70 @@
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
 
-      tl.from("#cover-halo", { opacity: 0, scale: 0.86, duration: 1.35, ease: "power2.out" }, 0.1);
-      tl.from("#cover-logo", { opacity: 0, scale: 0.92, duration: 1.1, ease: "power2.out" }, 0.25);
-      tl.from("#cover-cofounder", { opacity: 0, y: 18, duration: 1.0, ease: "power2.out" }, 0.35);
-      tl.from("#cover-founder", { opacity: 0, y: 18, duration: 1.0, ease: "power2.out" }, 0.5);
-      tl.from("#cover-masthead .day-kicker", { opacity: 0, y: 10, duration: 0.7, ease: "power2.out" }, 0.55);
-      tl.from("#cover-masthead .day-num", { opacity: 0, y: 28, duration: 1.05, ease: "power2.out" }, 0.7);
-      tl.from("#cover-ornament", { opacity: 0, scaleX: 0.4, duration: 0.7, ease: "power2.out" }, 1);
-      tl.from("#cover-masthead .topic", { opacity: 0, y: 16, duration: 0.9, ease: "power2.out" }, 1.15);
-      tl.from("#cover-masthead .tagline", { opacity: 0, y: 12, duration: 0.8, ease: "power2.out" }, 1.4);
+      /* Cover 0–8.2 — whisper: welcome 0.0, focus topic 4.4 */
+      tl.from("#cover-halo", { opacity: 0, scale: 0.86, duration: 1.2, ease: "power2.out" }, 0.1);
+      tl.from("#cover-logo-bg", { opacity: 0, scale: 0.92, duration: 1.0, ease: "power2.out" }, 0.2);
+      tl.from("#cover-logo", { opacity: 0, scale: 0.9, duration: 0.9, ease: "power2.out" }, 0.25);
+      tl.from("#cover-cofounder", { opacity: 0, y: 18, duration: 0.9, ease: "power2.out" }, 0.3);
+      tl.from("#cover-founder", { opacity: 0, y: 18, duration: 0.9, ease: "power2.out" }, 0.45);
+      tl.from("#cover-masthead .day-kicker", { opacity: 0, y: 10, duration: 0.6, ease: "power2.out" }, 0.5);
+      tl.from("#cover-masthead .day-num", { opacity: 0, y: 24, duration: 0.9, ease: "power2.out" }, 0.65);
+      tl.from("#cover-ornament", { opacity: 0, scaleX: 0.4, duration: 0.55, ease: "power2.out" }, 1.0);
+      tl.from("#cover-masthead .topic", { opacity: 0, y: 14, duration: 0.75, ease: "power2.out" }, 4.4);
+      tl.from("#cover-masthead .tagline", { opacity: 0, y: 10, duration: 0.65, ease: "power2.out" }, 5.5);
 
-      tl.from("#focus-label", { opacity: 0, x: -14, duration: 0.65, ease: "power2.out" }, 11.16);
-      tl.from("#focus-panel", { opacity: 0, y: 18, duration: 1.0, ease: "power2.out" }, 11.41);
+      /* Focus 8.2 — lines at 8.28, 10.40, 14.72 */
+      tl.from("#focus-label", { opacity: 0, x: -14, duration: 0.5, ease: "power2.out" }, 8.3);
+      tl.from("#focus-line-1", { opacity: 0, y: 14, duration: 0.55, ease: "power2.out" }, 8.35);
+      tl.from("#focus-line-2", { opacity: 0, y: 14, duration: 0.65, ease: "power2.out" }, 10.4);
+      tl.from("#focus-line-3", { opacity: 0, y: 14, duration: 0.65, ease: "power2.out" }, 14.72);
 
-      tl.from("#science-label", { opacity: 0, x: -12, duration: 0.6, ease: "power2.out" }, 24.11);
-      tl.from("#science-panel", { opacity: 0, y: 16, duration: 0.95, ease: "power2.out" }, 24.36);
-      tl.from("#science-nodes", { opacity: 0, scale: 0.88, duration: 1.1, ease: "power2.out" }, 24.71);
+      /* Science 19.3 — beats 19.46, 25.02, 26.74, 32.12 */
+      tl.from("#science-label", { opacity: 0, x: -12, duration: 0.5, ease: "power2.out" }, 19.4);
+      tl.from("#science-nodes", { opacity: 0, scale: 0.88, duration: 1.0, ease: "power2.out" }, 19.6);
+      tl.from("#sci-1", { opacity: 0, y: 12, duration: 0.6, ease: "power2.out" }, 19.5);
+      tl.from("#sci-2", { opacity: 0, y: 12, duration: 0.55, ease: "power2.out" }, 25.02);
+      tl.from("#sci-3", { opacity: 0, y: 12, duration: 0.6, ease: "power2.out" }, 26.74);
+      tl.from("#sci-4", { opacity: 0, y: 12, duration: 0.7, ease: "power2.out" }, 32.12);
 
-      tl.from("#protocol-label", { opacity: 0, y: 10, duration: 0.55, ease: "power2.out" }, 45.98);
-      tl.from("#step-1", { opacity: 0, x: -16, duration: 0.55, ease: "power2.out" }, 46.33);
-      tl.from("#step-2", { opacity: 0, x: -16, duration: 0.55, ease: "power2.out" }, 49.42);
-      tl.from("#step-3", { opacity: 0, x: -16, duration: 0.55, ease: "power2.out" }, 53);
-      tl.from("#step-4", { opacity: 0, x: -16, duration: 0.55, ease: "power2.out" }, 56.59);
-      tl.from("#step-5", { opacity: 0, x: -16, duration: 0.55, ease: "power2.out" }, 60.18);
+      /* Protocol 39.5 — label 39.64; steps 41.16, 44.54, 48.22, 53.28, 57.64 */
+      tl.from("#protocol-label", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 39.64);
+      tl.from("#step-1", { opacity: 0, x: -16, duration: 0.5, ease: "power2.out" }, 41.16);
+      tl.from("#step-2", { opacity: 0, x: -16, duration: 0.5, ease: "power2.out" }, 44.54);
+      tl.from("#step-3", { opacity: 0, x: -16, duration: 0.5, ease: "power2.out" }, 48.22);
+      tl.from("#step-4", { opacity: 0, x: -16, duration: 0.5, ease: "power2.out" }, 53.28);
+      tl.from("#step-5", { opacity: 0, x: -16, duration: 0.5, ease: "power2.out" }, 57.64);
 
-      tl.from("#practices-label", { opacity: 0, y: 10, duration: 0.55, ease: "power2.out" }, 65.91);
-      tl.from("#practice-1", { opacity: 0, y: 12, duration: 0.5, ease: "power2.out" }, 66.26);
-      tl.from("#practice-2", { opacity: 0, y: 12, duration: 0.5, ease: "power2.out" }, 68.83);
-      tl.from("#practice-3", { opacity: 0, y: 12, duration: 0.5, ease: "power2.out" }, 71.06);
-      tl.from("#practice-4", { opacity: 0, y: 12, duration: 0.5, ease: "power2.out" }, 73.29);
-      tl.from("#practice-5", { opacity: 0, y: 12, duration: 0.5, ease: "power2.out" }, 75.52);
+      /* Practices 61.0 — 61.16, 62.94, 65.28, 67.66, 69.56 */
+      tl.from("#practices-label", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 61.16);
+      tl.from("#practice-1", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 62.0);
+      tl.from("#practice-2", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 65.28);
+      tl.from("#practice-3", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 67.66);
+      tl.from("#practice-4", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 69.56);
+      tl.from("#practice-5", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 70.9);
 
-      tl.from("#tip-panel", { opacity: 0, y: 16, scale: 0.97, duration: 0.95, ease: "power2.out" }, 79.91);
+      /* Tip 72.6 — 72.72, 76.46 */
+      tl.from("#tip-panel", { opacity: 0, y: 14, scale: 0.97, duration: 0.7, ease: "power2.out" }, 72.72);
+      tl.from("#tip-line-1", { opacity: 0, y: 10, duration: 0.5, ease: "power2.out" }, 72.85);
+      tl.from("#tip-line-2", { opacity: 0, y: 10, duration: 0.55, ease: "power2.out" }, 76.46);
 
-      tl.from("#teach-label", { opacity: 0, y: 10, duration: 0.55, ease: "power2.out" }, 89.83);
-      tl.from("#bullet-1", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 90.18);
-      tl.from("#bullet-2", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 92.31);
-      tl.from("#bullet-3", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 94.22);
-      tl.from("#bullet-4", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 96.14);
-      tl.from("#bullet-5", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 98.05);
+      /* Teaching 80.5 — 80.66 intro; bullets 82.66…92.86 */
+      tl.from("#teach-label", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 80.66);
+      tl.from("#bullet-1", { opacity: 0, y: 12, duration: 0.4, ease: "power2.out" }, 82.66);
+      tl.from("#bullet-2", { opacity: 0, y: 12, duration: 0.4, ease: "power2.out" }, 84.56);
+      tl.from("#bullet-3", { opacity: 0, y: 12, duration: 0.4, ease: "power2.out" }, 87.18);
+      tl.from("#bullet-4", { opacity: 0, y: 12, duration: 0.4, ease: "power2.out" }, 90.18);
+      tl.from("#bullet-5", { opacity: 0, y: 12, duration: 0.4, ease: "power2.out" }, 92.86);
 
-      tl.from("#hw-label", { opacity: 0, y: 10, duration: 0.55, ease: "power2.out" }, 101.79);
-      tl.from("#hw-stack li", { opacity: 0, y: 10, duration: 0.45, stagger: 0.22, ease: "power2.out" }, 102.14);
-      tl.from("#hw-contact", { opacity: 0, duration: 0.5, ease: "power2.out" }, 103.64);
-      tl.from("#hw-halo", { opacity: 0, scale: 0.9, duration: 1.0, ease: "power2.out" }, 107.11);
-      tl.from("#hw-blessing", { opacity: 0, y: 18, duration: 1.0, ease: "power2.out" }, 107.41);
+      /* Homework 94.8 — 94.98, 98.52, 102.92, 104.92, blessing 107.48 */
+      tl.from("#hw-label", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 94.98);
+      tl.from("#hw-1", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 95.1);
+      tl.from("#hw-2", { opacity: 0, y: 10, duration: 0.5, ease: "power2.out" }, 98.52);
+      tl.from("#hw-3", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 102.92);
+      tl.from("#hw-4", { opacity: 0, y: 10, duration: 0.45, ease: "power2.out" }, 104.92);
+      tl.from("#hw-contact", { opacity: 0, duration: 0.45, ease: "power2.out" }, 105.5);
+      tl.from("#hw-halo", { opacity: 0, scale: 0.9, duration: 0.9, ease: "power2.out" }, 107.2);
+      tl.from("#hw-blessing", { opacity: 0, y: 16, duration: 0.9, ease: "power2.out" }, 107.48);
 
       window.__timelines["main"] = tl;
     </script>

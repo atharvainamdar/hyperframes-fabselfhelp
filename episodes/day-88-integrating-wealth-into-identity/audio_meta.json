@@ -1,49 +1,19 @@
 ﻿{
-    "voice":  "am_michael",
-    "engine":  "kokoro-local",
-    "voice_duration":  108.608,
-    "total_duration":  111.61,
-    "blessing_hold":  3,
-    "scenes":  [
-                   {
-                       "duration":  10.96,
-                       "id":  "cover",
-                       "start":  0
-                   },
-                   {
-                       "duration":  12.95,
-                       "id":  "focus",
-                       "start":  10.96
-                   },
-                   {
-                       "duration":  21.92,
-                       "id":  "science",
-                       "start":  23.91
-                   },
-                   {
-                       "duration":  19.93,
-                       "id":  "protocol",
-                       "start":  45.83
-                   },
-                   {
-                       "duration":  13.95,
-                       "id":  "practices",
-                       "start":  65.76
-                   },
-                   {
-                       "duration":  9.97,
-                       "id":  "tip",
-                       "start":  79.71
-                   },
-                   {
-                       "duration":  11.96,
-                       "id":  "teaching",
-                       "start":  89.68
-                   },
-                   {
-                       "duration":  9.97,
-                       "id":  "homework",
-                       "start":  101.64
-                   }
-               ]
+  "voice": "am_michael",
+  "engine": "kokoro-local",
+  "voice_duration": 108.608,
+  "total_duration": 111.61,
+  "blessing_hold": 3,
+  "sync_method": "faster-whisper base.en word timestamps",
+  "transcript": "whisper_transcript.json",
+  "scenes": [
+    { "id": "cover", "start": 0, "duration": 8.2, "vo": "Welcome… Today's focus: Integrating Wealth Into Identity." },
+    { "id": "focus", "start": 8.2, "duration": 11.1, "vo": "This is the final integration… permanently." },
+    { "id": "science", "start": 19.3, "duration": 20.2, "vo": "By Day Eighty-Eight… I am intelligent." },
+    { "id": "protocol", "start": 39.5, "duration": 21.5, "vo": "Today's protocol… identity integration is complete." },
+    { "id": "practices", "start": 61, "duration": 11.6, "vo": "Your identity practices… give from abundance." },
+    { "id": "tip", "start": 72.6, "duration": 7.9, "vo": "Pro tip… follow automatically." },
+    { "id": "teaching", "start": 80.5, "duration": 14.3, "vo": "Remember these teaching points… forever." },
+    { "id": "homework", "start": 94.8, "duration": 16.81, "vo": "Before you close… शुभं भवतु." }
+  ]
 }
