@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Day 88 — Integrating Wealth Into Identity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Noto+Sans+Devanagari:wght@700&family=Source+Sans+3:wght@400;600&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --void: #0a0a0c;
+        --panel: #141418;
+        --gold: #c9a227;
+        --gold-soft: #e8c547;
+        --gold-deep: #8b6914;
+        --amethyst: #6b3fa0;
+        --amethyst-soft: #9b6bc9;
+        --flare: #f7f3e9;
+        --flare-muted: #c4bba8;
+        --glass: rgba(255, 255, 255, 0.06);
+        --hairline: rgba(201, 162, 39, 0.35);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #000;
+        color: var(--flare);
+        font-family: "Source Sans 3", sans-serif;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        container-type: size;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+      .scene-ground {
+        position: absolute;
+        inset: 0;
+        background: var(--void);
+      }
+      .bloom {
+        position: absolute;
+        width: 55%;
+        height: 55%;
+        top: -8%;
+        left: 22%;
+        background: radial-gradient(circle, rgba(201, 162, 39, 0.14) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .bloom-amethyst {
+        position: absolute;
+        width: 40%;
+        height: 40%;
+        bottom: -5%;
+        right: -5%;
+        background: radial-gradient(circle, rgba(107, 63, 160, 0.12) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .watermark {
+        position: absolute;
+        left: 50%;
+        top: 48%;
+        transform: translate(-50%, -50%);
+        width: 28cqw;
+        height: 28cqw;
+        opacity: 0.08;
+        object-fit: contain;
+        pointer-events: none;
+      }
+      .portrait {
+        position: absolute;
+        top: 3.5cqw;
+        width: 11cqw;
+        text-align: center;
+      }
+      .portrait.left {
+        left: 4cqw;
+      }
+      .portrait.right {
+        right: 4cqw;
+      }
+      .portrait img {
+        width: 11cqw;
+        height: 11cqw;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2.5px solid var(--gold);
+        display: block;
+        margin: 0 auto;
+        background: var(--panel);
+      }
+      .portrait .badge {
+        margin-top: 0.7cqw;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+      .masthead {
+        position: absolute;
+        left: 50%;
+        top: 14%;
+        transform: translateX(-50%);
+        width: 58%;
+        text-align: center;
+      }
+      .day-num {
+        margin: 0;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 5.5cqw;
+        font-weight: 700;
+        line-height: 0.9;
+        color: var(--gold);
+      }
+      .topic {
+        margin: 1.2cqw 0 0;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3.2cqw;
+        font-weight: 700;
+        line-height: 1.1;
+        color: var(--flare);
+      }
+      .tagline {
+        margin: 1cqw 0 0;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5cqw;
+        font-weight: 600;
+        font-style: italic;
+        color: var(--gold-soft);
+      }
+      .program-footer {
+        position: absolute;
+        left: 4cqw;
+        right: 4cqw;
+        bottom: 3.2cqw;
+        padding-top: 1.2cqw;
+        border-top: 1px solid var(--hairline);
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--flare-muted);
+        display: flex;
+        justify-content: space-between;
+        gap: 2cqw;
+      }
+      .content-wrap {
+        position: absolute;
+        left: 8cqw;
+        right: 8cqw;
+        top: 12%;
+        bottom: 12%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .col-label {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.1cqw;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin: 0 0 2cqw;
+      }
+      .body-lg {
+        margin: 0;
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 2.4cqw;
+        font-weight: 400;
+        line-height: 1.45;
+        color: var(--flare);
+        max-width: 78cqw;
+      }
+      .body-md {
+        margin: 0;
+        font-family: "Source Sans 3", sans-serif;
+        font-size: 2cqw;
+        line-height: 1.45;
+        color: var(--flare);
+        max-width: 78cqw;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--hairline);
+        border-radius: 12px;
+        padding: 3.5cqw 4cqw;
+      }
+      .steps {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.6cqw;
+      }
+      .steps li {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.4cqw;
+        font-size: 1.85cqw;
+        line-height: 1.35;
+        color: var(--flare);
+      }
+      .step-circle {
+        flex: 0 0 2.4cqw;
+        width: 2.4cqw;
+        height: 2.4cqw;
+        border-radius: 50%;
+        background: var(--gold);
+        color: var(--void);
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        font-size: 1.2cqw;
+        display: grid;
+        place-items: center;
+        margin-top: 0.2cqw;
+      }
+      .tip-callout {
+        border-left: 4px solid var(--amethyst);
+        background: var(--glass);
+        padding: 2.5cqw 3cqw;
+        border-radius: 0 12px 12px 0;
+      }
+      .practices {
+        margin-top: 2.5cqw;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1cqw;
+      }
+      .chip {
+        border: 1px solid var(--hairline);
+        color: var(--flare-muted);
+        font-size: 1.15cqw;
+        padding: 0.6cqw 1.2cqw;
+        border-radius: 999px;
+      }
+      .bullets {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5cqw;
+      }
+      .bullets li {
+        display: flex;
+        gap: 1.2cqw;
+        align-items: flex-start;
+        font-size: 2cqw;
+        line-height: 1.35;
+        color: var(--flare);
+      }
+      .bullets li::before {
+        content: "";
+        width: 0.7cqw;
+        height: 0.7cqw;
+        border-radius: 50%;
+        background: var(--gold);
+        margin-top: 0.75cqw;
+        flex: 0 0 auto;
+      }
+      .cta-stack {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.3cqw;
+        font-size: 1.85cqw;
+        color: var(--flare);
+      }
+      .cta-stack li strong {
+        color: var(--gold-soft);
+        font-weight: 600;
+      }
+      .contact {
+        margin-top: 2.2cqw;
+        font-size: 1.25cqw;
+        color: var(--flare-muted);
+        letter-spacing: 0.02em;
+      }
+      .blessing {
+        margin: 2.5cqw 0 0;
+        font-family: "Noto Sans Devanagari", "Cormorant Garamond", serif;
+        font-size: 4.2cqw;
+        font-weight: 700;
+        color: var(--gold);
+        text-align: center;
+      }
+      .day-chip {
+        position: absolute;
+        top: 3.5cqw;
+        right: 4cqw;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.95cqw;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+        border: 1px solid var(--hairline);
+        padding: 0.5cqw 1cqw;
+        border-radius: 999px;
+      }
+      .science-nodes {
+        position: absolute;
+        right: 8cqw;
+        top: 28%;
+        width: 22cqw;
+        height: 22cqw;
+        opacity: 0.55;
+      }
+      .science-nodes svg {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-width="1920"
+      data-height="1080"
+      data-duration="111.61"
+    >
+      <!-- Scene durations are placeholders; sync script updates after TTS -->
+      <section id="scene-cover" class="clip" data-start="0" data-duration="10.96" data-track-index="1">
+        <div class="scene-ground"></div>
+        <div class="bloom"></div>
+        <img class="watermark" src="assets/brand/logo.png" alt="" />
+        <div class="portrait left" id="cover-cofounder">
+          <img src="assets/brand/co-founder.png" alt="Co-founder" />
+          <div class="badge">Co-Founder</div>
+        </div>
+        <div class="portrait right" id="cover-founder">
+          <img src="assets/brand/founder.png" alt="Founder" />
+          <div class="badge">Founder</div>
+        </div>
+        <div class="masthead" id="cover-masthead">
+          <p class="day-num">DAY 88</p>
+          <h1 class="topic">Integrating Wealth Into Identity</h1>
+          <p class="tagline">The final integration — wealth becomes who you are</p>
+        </div>
+        <div class="program-footer">
+          <span>90-Day Sampatti (Wealth) Mastery Program</span>
+          <span>fabselfhelp.com · +91 78880 48281</span>
+        </div>
+      </section>
+
+      <section id="scene-focus" class="clip" data-start="10.96" data-duration="13.95" data-track-index="1">
+        <div class="scene-ground"></div>
+        <div class="bloom"></div>
+        <div class="day-chip">Day 88</div>
+        <div class="content-wrap">
+          <div class="panel" id="focus-panel">
+            <p class="col-label">Today's Focus</p>
+            <p class="body-lg">
+              Wealth is no longer something you're doing — it's who you <em style="color: var(--gold-soft); font-style: italic">are</em>.
+              This final week locks wealth into your identity permanently.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-science" class="clip" data-start="24.91" data-duration="23.92" data-track-index="1">
+        <div class="scene-ground"></div>
+        <div class="bloom-amethyst"></div>
+        <div class="day-chip">Day 88</div>
+        <div class="content-wrap" style="right: 32cqw">
+          <div class="panel" id="science-panel">
+            <p class="col-label">The Science</p>
+            <p class="body-md">
+              By Day 88, neural pathways for wealth thinking are extremely strong.
+              Integration means this identity holds under stress — so
+              “I am someone wealthy” feels as natural as kindness or intelligence.
+            </p>
+          </div>
+        </div>
+        <div class="science-nodes" id="science-nodes" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none">
+            <circle cx="100" cy="100" r="18" stroke="#C9A227" stroke-width="2" />
+            <circle cx="40" cy="60" r="10" stroke="#9B6BC9" stroke-width="2" />
+            <circle cx="160" cy="55" r="10" stroke="#9B6BC9" stroke-width="2" />
+            <circle cx="45" cy="145" r="10" stroke="#C9A227" stroke-width="2" />
+            <circle cx="155" cy="150" r="10" stroke="#C9A227" stroke-width="2" />
+            <path d="M55 65 L85 92 M145 62 L115 90 M55 140 L85 112 M145 145 L115 112" stroke="#C9A227" stroke-opacity="0.5" stroke-width="1.5" />
+          </svg>
+        </div>
+      </section>
+
+      <section id="scene-protocol" class="clip" data-start="48.83" data-duration="21.92" data-track-index="1">
+        <div class="scene-ground"></div>
+        <div class="bloom"></div>
+        <div class="day-chip">Day 88</div>
+        <div class="content-wrap">
+          <p class="col-label" id="protocol-label">Today's Protocol</p>
+          <ul class="steps">
+            <li id="step-1"><span class="step-circle">1</span><span><strong style="color: var(--gold-soft)">Assess</strong> — Does “I am a wealthy person” feel true?</span></li>
+            <li id="step-2"><span class="step-circle">2</span><span><strong style="color: var(--gold-soft)">Identify</strong> — Any remaining limiting beliefs</span></li>
+            <li id="step-3"><span class="step-circle">3</span><span><strong style="color: var(--gold-soft)">Challenge</strong> — Where does the old identity resurface?</span></li>
+            <li id="step-4"><span class="step-circle">4</span><span><strong style="color: var(--gold-soft)">Reinforce</strong> — Daily practices that cement identity</span></li>
+            <li id="step-5"><span class="step-circle">5</span><span><strong style="color: var(--gold-soft)">Celebrate</strong> — Identity integration is complete</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="scene-tip" class="clip" data-start="70.75" data-duration="17.94" data-track-index="1">
+        <div class="scene-ground"></div>
+        <div class="bloom-amethyst"></div>
+        <div class="day-chip">Day 88</div>
+        <div class="content-wrap">
+          <div class="tip-callout" id="tip-panel">
+            <p class="col-label">Pro Tip</p>
+            <p class="body-lg">
+              Identity is the deepest level of change. When who you are matches wealth,
+              external results follow automatically.
+            </p>
+            <div class="practices" id="tip-practices">
+              <span class="chip">Morning: I am a wealth creator</span>
+              <span class="chip">Decide from wealth identity</span>
+              <span class="chip">Respond as a wealthy person</span>
+              <span class="chip">Speak from abundance</span>
+              <span class="chip">Give from abundance</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-teaching" class="clip" data-start="88.69" data-duration="11.96" data-track-index="1">
+        <div class="scene-ground"></div>
+        <div class="bloom"></div>
+        <div class="day-chip">Day 88</div>
+        <div class="content-wrap">
+          <p class="col-label" id="teach-label">Daily Teaching Points</p>
+          <ul class="bullets">
+            <li id="bullet-1">You are a wealthy person now</li>
+            <li id="bullet-2">Identity is more powerful than behavior</li>
+            <li id="bullet-3">A wealthy person's mindset is your default</li>
+            <li id="bullet-4">You have completed identity integration</li>
+            <li id="bullet-5">This is who you are — forever</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="scene-homework" class="clip" data-start="100.65" data-duration="10.96" data-track-index="1">
+        <div class="scene-ground"></div>
+        <div class="bloom"></div>
+        <div class="content-wrap" style="text-align: left">
+          <p class="col-label" id="hw-label">Tonight's Homework</p>
+          <ul class="cta-stack" id="hw-stack">
+            <li>Write today's learnings in your <strong>diary</strong></li>
+            <li>Before sleep, send a photo of your notes on WhatsApp: <strong>+91 78880 48281</strong></li>
+            <li><strong>Subscribe</strong>, like, and share</li>
+            <li>Visit <strong>fabselfhelp.com</strong></li>
+          </ul>
+          <p class="contact" id="hw-contact">
+            fabselfhelp.com · tcprc.energyscience@gmail.com · +91 78880 48281
+          </p>
+          <p class="blessing" id="hw-blessing">शुभं भवतु</p>
+        </div>
+      </section>
+
+      <audio
+        id="narration"
+        src="narration.wav"
+        data-start="0"
+        data-duration="108.608"
+        data-track-index="10"
+        data-volume="1"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      tl.from("#cover-cofounder", { opacity: 0, y: 12, duration: 0.9, ease: "sine.inOut" }, 0.2);
+      tl.from("#cover-founder", { opacity: 0, y: 12, duration: 0.9, ease: "sine.inOut" }, 0.35);
+      tl.from("#cover-masthead .day-num", { opacity: 0, y: 24, duration: 0.9, ease: "sine.inOut" }, 0.45);
+      tl.from("#cover-masthead .topic", { opacity: 0, y: 18, duration: 0.85, ease: "sine.inOut" }, 0.7);
+      tl.from("#cover-masthead .tagline", { opacity: 0, y: 12, duration: 0.8, ease: "sine.inOut" }, 1);
+
+      tl.from("#focus-panel", { opacity: 0, y: 16, duration: 0.9, ease: "sine.inOut" }, 11.16);
+
+      tl.from("#science-panel", { opacity: 0, y: 16, duration: 0.9, ease: "sine.inOut" }, 25.11);
+      tl.from("#science-nodes", { opacity: 0, scale: 0.92, duration: 1.0, ease: "sine.inOut" }, 25.51);
+
+      tl.from("#protocol-label", { opacity: 0, y: 10, duration: 0.6, ease: "sine.inOut" }, 48.98);
+      tl.from("#step-1", { opacity: 0, y: 12, duration: 0.55, ease: "sine.inOut" }, 49.33);
+      tl.from("#step-2", { opacity: 0, y: 12, duration: 0.55, ease: "sine.inOut" }, 52.78);
+      tl.from("#step-3", { opacity: 0, y: 12, duration: 0.55, ease: "sine.inOut" }, 56.72);
+      tl.from("#step-4", { opacity: 0, y: 12, duration: 0.55, ease: "sine.inOut" }, 60.67);
+      tl.from("#step-5", { opacity: 0, y: 12, duration: 0.55, ease: "sine.inOut" }, 64.61);
+
+      tl.from("#tip-panel", { opacity: 0, y: 14, duration: 0.85, ease: "sine.inOut" }, 70.95);
+      tl.from("#tip-practices .chip", { opacity: 0, y: 8, duration: 0.45, stagger: 0.12, ease: "sine.inOut" }, 72.25);
+
+      tl.from("#teach-label", { opacity: 0, y: 10, duration: 0.55, ease: "sine.inOut" }, 88.84);
+      tl.from("#bullet-1", { opacity: 0, y: 10, duration: 0.45, ease: "sine.inOut" }, 89.19);
+      tl.from("#bullet-2", { opacity: 0, y: 10, duration: 0.45, ease: "sine.inOut" }, 90.69);
+      tl.from("#bullet-3", { opacity: 0, y: 10, duration: 0.45, ease: "sine.inOut" }, 92.19);
+      tl.from("#bullet-4", { opacity: 0, y: 10, duration: 0.45, ease: "sine.inOut" }, 93.69);
+      tl.from("#bullet-5", { opacity: 0, y: 10, duration: 0.45, ease: "sine.inOut" }, 95.19);
+
+      tl.from("#hw-label", { opacity: 0, y: 10, duration: 0.55, ease: "sine.inOut" }, 100.8);
+      tl.from("#hw-stack li", { opacity: 0, y: 10, duration: 0.45, stagger: 0.25, ease: "sine.inOut" }, 101.15);
+      tl.from("#hw-contact", { opacity: 0, duration: 0.5, ease: "sine.inOut" }, 102.85);
+      tl.from("#hw-blessing", { opacity: 0, y: 16, duration: 0.9, ease: "sine.inOut" }, 107.41);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

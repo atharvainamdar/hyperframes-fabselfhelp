@@ -1,0 +1,22 @@
+# Local TTS / tooling
+.venv-tts/
+__pycache__/
+*.pyc
+_setup_check.ps1
+_find_python.ps1
+_setup_tts_venv.ps1
+
+# HyperFrames cache / studio
+.hyperframes/
+node_modules/
+.media/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Secrets
+.env
+.env.*
+!.env.example

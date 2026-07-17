@@ -1,0 +1,28 @@
+# SCRIPT — Day 88: Integrating Wealth Into Identity
+
+**Program:** 90-Day Sampatti (Wealth) Mastery  
+**Language:** English (trial)  
+**Target duration:** ~110–140 seconds  
+**Tone:** Calm mentor. Closing blessing energy.
+
+---
+
+## Narration (spoken verbatim)
+
+Welcome to Day Eighty-Eight of the Sampurna Samruddhi Wealth Mastery Program.
+
+Today's focus: Integrating Wealth Into Identity.
+
+This is the final integration. Wealth is no longer something you are doing. It is who you are. This final week is about locking wealth into your identity — permanently.
+
+By Day Eighty-Eight, your neural pathways for wealth thinking are extremely strong. Wealth thinking is becoming your default. But true integration means this new identity holds even under stress or challenge. True wealth is when "I am someone wealthy" feels as natural as "I am a kind person," or "I am intelligent."
+
+Today's protocol. One: Assess — does "I am a wealthy person" feel true? Two: Identify any remaining limiting beliefs. Three: Challenge the situations where the old identity tries to resurface. Four: Reinforce daily practices that cement this identity. Five: Celebrate — identity integration is complete.
+
+Your identity practices: In the morning, say "I am a wealth creator." Make decisions from a wealthy identity. Respond as a wealthy person. Speak from a wealthy identity. And give from abundance.
+
+Pro tip: Identity is the deepest level of change. When who you are matches wealth, external results follow automatically.
+
+Remember these teaching points. You are a wealthy person now. Identity is more powerful than behavior. A wealthy person's mindset is your default. You have completed identity integration. This is who you are — forever.
+
+Before you close, write today's learnings in your diary. Before sleep, send a photo of your notes to your mentor on WhatsApp. Subscribe, like, and share. Visit fabselfhelp.com. शुभं भवतु.

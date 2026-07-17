@@ -8,7 +8,16 @@ Brand + HyperFrames design templates for **Sampurna Samruddhi (With Ease)** — 
 | Website | https://fabselfhelp.com/ |
 | Stack | **HyperFrames only** (no HeyGen Avatar / Studio) |
 
-This repo holds **brand/template docs**, not a copy of the FABSELFHELP app.
+This repo holds **brand/template docs** and HyperFrames episode projects — not a copy of the FABSELFHELP app.
+
+### First trial episode
+
+| | |
+| --- | --- |
+| Path | [`episodes/day-88-integrating-wealth-into-identity/`](episodes/day-88-integrating-wealth-into-identity/) |
+| Topic | Day 88 — Integrating Wealth Into Identity (EN) |
+| Output | `episodes/.../renders/day-88-integrating-wealth-into-identity.mp4` (~1m 52s) |
+| TTS | Kokoro local (`am_michael`) — no HeyGen Avatar |
 
 ---
 

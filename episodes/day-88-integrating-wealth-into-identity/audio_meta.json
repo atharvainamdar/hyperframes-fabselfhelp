@@ -1,0 +1,44 @@
+﻿{
+    "voice":  "am_michael",
+    "engine":  "kokoro-local",
+    "voice_duration":  108.608,
+    "total_duration":  111.61,
+    "blessing_hold":  3,
+    "scenes":  [
+                   {
+                       "duration":  10.96,
+                       "id":  "cover",
+                       "start":  0
+                   },
+                   {
+                       "duration":  13.95,
+                       "id":  "focus",
+                       "start":  10.96
+                   },
+                   {
+                       "duration":  23.92,
+                       "id":  "science",
+                       "start":  24.91
+                   },
+                   {
+                       "duration":  21.92,
+                       "id":  "protocol",
+                       "start":  48.83
+                   },
+                   {
+                       "duration":  17.94,
+                       "id":  "tip",
+                       "start":  70.75
+                   },
+                   {
+                       "duration":  11.96,
+                       "id":  "teaching",
+                       "start":  88.69
+                   },
+                   {
+                       "duration":  10.96,
+                       "id":  "homework",
+                       "start":  100.65
+                   }
+               ]
+}
