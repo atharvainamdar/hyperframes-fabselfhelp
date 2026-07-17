@@ -2,18 +2,20 @@
 
 Brand cheat sheet for HyperFrames and all channel media. Reference only — creative plans live in `STORYBOARD.md`. Video composition uses the companion `frame.md` (same atoms, frame-scale rewrite).
 
-**Channel:** [Sampurna Samruddhi (With Ease)](https://www.youtube.com/@selfupliftmentprojectfetcp3253)  
-**Site:** [fabselfhelp.com](https://fabselfhelp.com/)  
-**Founder:** Ramesh Inamdar · **Team:** Samruddhi Upasana Team · **Base:** Pune, Maharashtra  
+**Channel:** [Sampurna Samruddhi (With Ease)](https://www.youtube.com/@selfupliftmentprojectfetcp3253)
+**Site:** [fabselfhelp.com](https://fabselfhelp.com/)
+**Founder:** Ramesh Inamdar · **Team:** Samruddhi Upasana Team · **Base:** Pune, Maharashtra
 **Constraint:** HyperFrames only (no HeyGen Avatar / Studio talking-head).
 
 ---
 
 ## Overview
 
-Sampurna Samruddhi (“complete prosperity, with ease”) teaches a calm, spiritual-practical path: Vedic wisdom braided with modern behavioral science. The brand feels mentor-like, never salesy.
+Sampurna Samruddhi ("complete prosperity, with ease") teaches a calm, spiritual-practical path: Vedic wisdom braided with modern behavioral science. The brand feels mentor-like, never salesy.
 
-Visual personality for the **primary YouTube wealth template** (HyperFrames target) is taken from the **official medallion logo**: deep navy–teal celestial field, luminous gold filigree, soft pink lotus accents used sparingly, starfield subtlety, ceremonial serif typography, and gold-ring founder / co-founder portraits as brand anchors — **not** void-black SaaS cards or purple neon glow.
+Visual personality for the **primary YouTube wealth template** (HyperFrames target) is **"Quiet Ledger"** — modern luxury minimalism: one obsidian charcoal canvas, one warm amber flame-light, oversized confident editorial serif type, generous negative space, filmic grain, restrained motion. This **replaces** the earlier celestial-medallion system (navy/teal + gold filigree + lotus + Cinzel/Cormorant + circular portrait badges), which is retired.
+
+Why this direction fits a spiritual-wealth brand: a single lit flame/amber light is a quiet, universal devotional cue (a diya, a candle by which a ledger is read) without being literally ornamental; the ledger/ordinal motif (roman numerals, tally ticks, hairline rules) speaks directly to *wealth as an ordered practice*; and the luxury-minimal restraint signals *calm mastery* rather than hustle or spectacle — matching the "calm mentor" tone this channel has always wanted.
 
 ---
 
@@ -38,15 +40,15 @@ Visual personality for the **primary YouTube wealth template** (HyperFrames targ
 | **Karya** | कार्य | Career / work |
 | **Adhyatma** | अध्यात्म | Spirituality |
 
-Primary HyperFrames series today: **90-Day Sampatti (Wealth) Mastery** — celestial navy / gold / lotus whisper.
+Primary HyperFrames series today: **90-Day Sampatti (Wealth) Mastery** — Quiet Ledger direction (ink / amber).
 
 ---
 
 ## Visual Theme
 
-### A · Wealth Mastery (YouTube / HyperFrames — primary)
+### A · Wealth Mastery (YouTube / HyperFrames — primary) — "Quiet Ledger"
 
-Celestial navy–teal canvas (from the medallion). Gold carries DAY N, section titles, rings, and CTAs. Soft lotus pink is scarce — never a dominant fill. Warm flare text for reading. Gold-ring medallion portraits (co-founder left, founder right). Logo mark present as sacred identity (watermark or closer hero). Scene beats are distinct full-frame teachings — not one wall of five tiny columns for the whole runtime. Motion is ceremonial: 2–3 intentional motions per scene.
+Obsidian ink canvas with animated film grain and a single drifting amber key light — this persistent background layer runs the full video, so no scene ever looks like a static reset frame. Amber carries every numeral, rule, tick, and reveal. Editorial serif type (Fraunces headlines, Lora body) replaces ceremonial display faces. Founder/co-founder are duotone-treated (grayscale + amber/ink color overlay), cropped as rectangles, and appear as small persistent rail chips throughout plus a larger "featured" editorial diptych at the open and close — never circular medallion badges. The real logo artwork appears twice, heavily treated into an atmospheric amber seal, bookending the film (cover open + blessing close). Layouts are asymmetric editorial grids that vary scene-to-scene. Motion is mask-reveal (clip-path) headlines, inline word "flare" for emphasis, and long confident holds — never a slammed kinetic overlay word, never a white flash cut.
 
 ### B · Website & light editorial (fabselfhelp.com)
 
@@ -56,24 +58,22 @@ Warm cream paper (`#FDF6EC`), deep teal (`#0B3D3D`), amber/gold accents. **Do no
 
 ## Colors
 
-### Theme A — Celestial Wealth (encode these in `frame.md`)
+### Theme A — Quiet Ledger (encode these in `frame.md`)
 
 | Role | Token | HEX / value | Notes |
 | --- | --- | --- | --- |
-| Primary surface | `celestial` | `#071825` | Full-bleed video ground |
-| Surface mid | `celestial-mid` | `#0C2A38` | Soft lifts / vignette mid |
-| Teal glow | `teal-glow` | `#134A52` | Ambient radial blooms |
-| Primary gold | `gold` | `#C9A227` | Labels, rings, CTAs |
-| Gold soft | `gold-soft` | `#E8C547` | Highlights |
-| Gold bright | `gold-bright` | `#F0D78C` | DAY N, blessing |
-| Gold deep | `gold-deep` | `#8B6914` | Secondary rules |
-| Lotus | `lotus` | `#D4A0A8` | Scarce accent only |
-| Text primary | `flare` | `#F7F3E9` | Headlines & body |
-| Text muted | `flare-muted` | `#C4BBA8` | Supporting lines |
-| Overlay | `glass` | `rgba(255,255,255,0.04)` | Soft panels if needed |
-| Border quiet | `hairline` | `rgba(201,162,39,0.4)` | Filigree rules |
+| Primary surface | `ink` | `#0A0A0B` | Full-bleed video ground |
+| Surface mid | `ink-mid` | `#141316` | Vignette mid / elevated panel |
+| Surface deep | `ink-deep` | `#040404` | Vignette edge |
+| Primary amber | `amber` | `#C9903F` | Rules, ticks, numerals, kickers |
+| Amber bright | `amber-bright` | `#E8B768` | Blessing, hero numeral, flare peak |
+| Amber dim | `amber-dim` | `#A18A67` | Ghost numerals, rail wordmark |
+| Amber wash | `amber-wash` | `rgba(201,144,63,0.14)` | Key-light glow |
+| Text primary | `paper` | `#EFE7D8` | Headlines & body |
+| Text muted | `paper-muted` | `#9C948A` | Supporting lines, meta |
+| Hairline | `hairline` | `rgba(201,144,63,0.28)` | Ledger rules, dividers |
 
-**Retired from wealth system:** amethyst / purple neon accents. Do not reintroduce purple glow as a default.
+**Retired from wealth system:** celestial navy/teal, gold filigree, lotus pink, amethyst/purple. None survive as system accents.
 
 ### Theme B — Site / light (reference)
 
@@ -91,11 +91,11 @@ Warm cream paper (`#FDF6EC`), deep teal (`#0B3D3D`), amber/gold accents. **Do no
 
 | Role | Family | Weights | Usage |
 | --- | --- | --- | --- |
-| Day / chrome | **Cinzel** | 600–700 | DAY N, section labels, footer |
-| Display titles | **Cormorant Garamond** | 600–700 | Topic titles, taglines (italic) |
-| Body EN | **Source Serif 4** | 400–600 | Focus, science, tips, teaching |
-| Devanagari | **Noto Sans Devanagari** | 400–700 | Marathi + blessing |
-| Avoid | Inter, Roboto, Arial, system UI stacks | — | Reads as generic AI slop |
+| Headline / numerals | **Fraunces** | 500–700, italic for statements | Cover numeral, Focus/Science/Tip headlines, ghost numerals |
+| Body | **Lora** | 400–600, italic tagline | Science, Protocol, Practices, Teaching, CTA copy |
+| Meta / rail / kickers | **Manrope** | 600–800 | Kickers, masthead rail, tick labels, role tags |
+| Devanagari | **Noto Sans Devanagari** | 600–700 | Marathi + blessing |
+| Avoid | Cinzel, Cormorant Garamond, Inter, Roboto, Arial, system UI stacks | — | Reads as either the retired medallion system or generic AI slop |
 
 **Bilingual rules:** separate EN / MR masters; Marathi needs more vertical room; closing blessing always includes **शुभं भवतु**.
 
@@ -103,45 +103,46 @@ Warm cream paper (`#FDF6EC`), deep teal (`#0B3D3D`), amber/gold accents. **Do no
 
 ## Elevation
 
-Depth from celestial vignettes, gold halos (sunburst behind day/blessing), double gold portrait rings, thin filigree corner brackets, and faint starfield — **not** heavy drop shadows, neon glow stacks, or glassmorphism cards.
+Depth comes from the persistent grain + single amber key-light drift, hairline ledger rules, and duotone photo treatment — **not** heavy drop shadows, glassmorphism cards, gold filigree, or neon glow stacks.
 
 ---
 
 ## Spacing & Layout
 
 - **Aspect:** 16:9 (1920×1080) primary.
-- **Wealth Day scene order (canonical):**
+- **Wealth Day scene order (canonical, unchanged):**
 
 | Beat | Content |
 | --- | --- |
-| Cover | Logo · DAY N · topic · dual medallion portraits · program footer |
-| Focus | One identity statement, full frame |
-| Science | Mechanism + optional constellation diagram |
-| Protocol | 5 ceremonial steps |
-| Practices | 5 identity practices (own beat) |
-| Pro Tip | One luminous sentence |
-| Teaching | 5 teaching points |
-| Homework | CTAs + WhatsApp + **शुभं भवतु** |
+| Cover | Bled numeral · headline mask-reveal · brand-seal atmosphere · editorial credit diptych |
+| Focus | One identity statement at a time, asymmetric two-column |
+| Science | Mechanism + `ledger-thread` diagram, mirrored asymmetry |
+| Protocol | 5 steps, one `ghost-numeral` hero beat at a time |
+| Practices | 5 identity practices, own beat, tally-mark reveal |
+| Pro Tip | One luminous sentence, full-bleed, no frame |
+| Teaching | 5 teaching points, `index-column` of ordinals |
+| Homework | `cta-index` + WhatsApp + blessing-stage + **शुभं भवतु** |
 
 ---
 
 ## Components
 
-- **Day Masthead** — DAY N + topic + tagline
-- **Portrait Medallion** — double gold ring, role label in Cinzel
-- **Statement Block** — full-scene teaching without card chrome
-- **Ritual Step List** — gold ordinals + hairline separators
-- **Practice Litany** — spark-marked vertical practices
-- **Tip Lockup** — thin gold frame, one tip
-- **Teaching Litany** — ordinal teachings
-- **Homework + Blessing** — CTA stack + शुभं भवतु
-- **Logo Mark** — official medallion only
+- **Masthead Rail** — persistent top strip: ring-glyph + wordmark + duotone founder/co-founder chips + role tags (replaces corner medallion badges)
+- **Ledger Canvas** — persistent full-duration background: grain + amber key light + drifting ledger line
+- **Brand Seal** — treated logo artwork, featured only at cover open + blessing close
+- **Editorial Credit** — larger "Guided by" / "With gratitude" duotone portrait diptych at the two bookend moments
+- **Ghost Numeral** — oversized faint Fraunces numeral, Protocol atmosphere
+- **Index Column** — vertical stack of faint ordinals, Teaching beat
+- **Ledger Thread** — abstract engraved-line diagram, Science beat
+- **Tick Rail** — progress ticks, Protocol (vertical) / Practices (horizontal)
+- **CTA Index** — roman-numeral CTA list, Homework
+- **Blessing Stage** — final full-bleed hold, शुभं भवतु
 
 ---
 
 ## Motion Language
 
-Ceremonial calm. Prefer halo breath, intentional rises, sequential ritual reveals timed to VO. **2–3 strong motions per scene.** Avoid slam zooms, glitch, confetti, floating stickers, and random fade spam.
+Restrained-drift. Mask-reveal (clip-path) for headline text, inline word "flare" (color/glow pulse on a word already in the sentence) for emphasis, amber light-leak sweeps at scene cuts (never white flash), long confident holds (3s+). **One continuous background layer under every scene** is the primary device against the "slideshow" feeling. Avoid slam zooms, glitch, confetti, floating stickers, giant kinetic overlay words, and random fade spam.
 
 ---
 
@@ -155,10 +156,10 @@ Ceremonial calm. Prefer halo breath, intentional rises, sequential ritual reveal
 
 ### Homework CTA (every wealth video)
 
-1. Watch till the end  
-2. Write learnings in diary  
-3. Before sleep, send photo of notes to mentor on WhatsApp: **+91 78880 48281**  
-4. Subscribe, like, share  
+1. Watch till the end
+2. Write learnings in diary
+3. Before sleep, send photo of notes to mentor on WhatsApp: **+91 78880 48281**
+4. Subscribe, like, share
 5. Close with **शुभं भवतु**
 
 ---
@@ -167,15 +168,16 @@ Ceremonial calm. Prefer halo breath, intentional rises, sequential ritual reveal
 
 ### Do
 
-- Match the medallion: celestial navy/teal + luminous gold + scarce lotus.
-- Use real founder & co-founder photos in gold medallion rings.
-- Reveal in VO order including a distinct **Practices** beat.
+- Ink canvas + single amber key light, every frame, every scene.
+- Real founder & co-founder photos, duotone-treated, rectangular — rail chips throughout + featured diptych at open/close.
+- Reveal in VO order via mask-reveal headlines and inline word flare.
 - End with homework + **शुभं भवतु**.
 
 ### Don't
 
 - No HeyGen Avatar / Studio talking-head pipelines.
-- No purple-on-black neon SaaS look, Inter/Roboto, centered bullet card walls, or Midjourney gradient blobs as the main idea.
+- No navy/teal/gold-filigree/lotus medallion look, no purple-on-black neon SaaS, no Inter/Roboto, no centered bullet card walls, no Midjourney gradient blobs.
+- No circular portrait medallion badges, no white flash transitions, no giant slammed kinetic overlay words.
 - No inventing day numbers, phases, financial claims, or testimonials.
 - No covering faces with stickers or badges over eyes.
 
@@ -193,10 +195,10 @@ Ceremonial calm. Prefer halo breath, intentional rises, sequential ritual reveal
 
 ## Contact & Channel Lockups
 
-- **Web:** https://fabselfhelp.com/  
-- **Email:** tcprc.energyscience@gmail.com  
-- **Phone / WhatsApp:** +91 78880 48281  
-- **Program line:** 90-DAY SAMPATTI (WEALTH) MASTERY PROGRAM  
+- **Web:** https://fabselfhelp.com/
+- **Email:** tcprc.energyscience@gmail.com
+- **Phone / WhatsApp:** +91 78880 48281
+- **Program line:** 90-DAY SAMPATTI (WEALTH) MASTERY PROGRAM
 
 ---
 
