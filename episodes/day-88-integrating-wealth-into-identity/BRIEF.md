@@ -11,7 +11,7 @@
 | **aspect** | 1920×1080 |
 | **target_length** | ~110–140s |
 | **ONE message** | Wealth is no longer something you do — it is who you are. |
-| **design** | Repo `frame.md` / `DESIGN.md` (void · gold · amethyst) |
+| **design** | Repo `frame.md` / `DESIGN.md` (celestial navy/teal · gold · lotus whisper) |
 | **assets** | `assets/brand/logo.png`, `founder.png`, `co-founder.png` |
 | **voice** | Kokoro `am_michael` (local offline) |
 | **closing** | Homework CTA + शुभं भवतु |

@@ -11,34 +11,39 @@
                        "start":  0
                    },
                    {
-                       "duration":  13.95,
+                       "duration":  12.95,
                        "id":  "focus",
                        "start":  10.96
                    },
                    {
-                       "duration":  23.92,
-                       "id":  "science",
-                       "start":  24.91
-                   },
-                   {
                        "duration":  21.92,
-                       "id":  "protocol",
-                       "start":  48.83
+                       "id":  "science",
+                       "start":  23.91
                    },
                    {
-                       "duration":  17.94,
+                       "duration":  19.93,
+                       "id":  "protocol",
+                       "start":  45.83
+                   },
+                   {
+                       "duration":  13.95,
+                       "id":  "practices",
+                       "start":  65.76
+                   },
+                   {
+                       "duration":  9.97,
                        "id":  "tip",
-                       "start":  70.75
+                       "start":  79.71
                    },
                    {
                        "duration":  11.96,
                        "id":  "teaching",
-                       "start":  88.69
+                       "start":  89.68
                    },
                    {
-                       "duration":  10.96,
+                       "duration":  9.97,
                        "id":  "homework",
-                       "start":  100.65
+                       "start":  101.64
                    }
                ]
 }

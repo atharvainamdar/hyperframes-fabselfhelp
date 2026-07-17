@@ -1,7 +1,7 @@
 # STORYBOARD — Day 88: Integrating Wealth Into Identity
 
 **Format:** 1920×1080 · 16:9  
-**Style:** Sampurna Samruddhi Wealth (`frame.md`) — void / gold / amethyst  
+**Style:** Sampurna Samruddhi Upasana celestial wealth (`frame.md`) — navy/teal · gold · lotus whisper  
 **Workflow:** `/faceless-explainer` scene vocabulary  
 **ONE message:** Wealth is no longer something you do — it is who you are.
 
@@ -9,7 +9,7 @@
 
 ## Video direction
 
-Calm prosperity ledger. Sequential scene reveals timed to VO. Soft opacity + gentle y-rise. No slam, glitch, or neon. Portraits (co-founder L, founder R) on Cover; smaller chrome optional on closer. Logo watermark low opacity on Cover. End hold on **शुभं भवतु**.
+Celestial prosperity ceremony drawn from the official medallion logo. Sequential scene reveals timed to VO. Halo breath, intentional rises, ritual step reveals — 2–3 strong motions per scene. No slam, glitch, neon SaaS, or floating stickers. Medallion portraits (co-founder L, founder R) on Cover. Logo present as sacred mark. End hold on **शुभं भवतु**.
 
 `music:` soft ambient bed optional (trial may ship VO-only)
 
@@ -20,12 +20,12 @@ Calm prosperity ledger. Sequential scene reveals timed to VO. Soft opacity + gen
 | Field | Value |
 | --- | --- |
 | **id** | `01-cover` |
-| **approx** | 0–12s (VO-driven) |
+| **approx** | 0–11s (VO-driven) |
 | **narration** | Welcome… Today's focus: Integrating Wealth Into Identity. |
 | **treatment** | Day Cover |
-| **mood** | Sacred open · dual mentor presence |
-| **layout** | Portrait rings L/R · DAY 88 gold · topic · tagline · logo watermark · program footer |
-| **motion** | Soft gold bloom · portraits fade · day numeral rise · topic fade |
+| **mood** | Sacred open · dual mentor presence · medallion energy |
+| **layout** | Starfield celestial · gold halo · logo watermark · medallion portraits L/R · DAY 88 · topic · tagline · filigree corners · program footer |
+| **motion** | Halo expand · portraits rise · day numeral rise · ornament + topic |
 | **assets** | `assets/brand/logo.png`, `assets/brand/co-founder.png`, `assets/brand/founder.png` |
 
 ## Frame 2 — Focus
@@ -34,10 +34,10 @@ Calm prosperity ledger. Sequential scene reveals timed to VO. Soft opacity + gen
 | --- | --- |
 | **id** | `02-focus` |
 | **narration** | This is the final integration… permanently. |
-| **treatment** | Focus |
+| **treatment** | Focus (statement block) |
 | **label** | TODAY'S FOCUS |
 | **copy** | Wealth is no longer something you're doing — it's who you ARE. This final week locks wealth into identity permanently. |
-| **motion** | Panel rise · label then body |
+| **motion** | Label slide · statement rise with gold rule |
 
 ## Frame 3 — Science
 
@@ -48,7 +48,7 @@ Calm prosperity ledger. Sequential scene reveals timed to VO. Soft opacity + gen
 | **treatment** | Science |
 | **label** | THE SCIENCE |
 | **copy** | Neural pathways for wealth thinking are extremely strong. Integration locks the identity even under stress — so "I am someone wealthy" feels as natural as kindness or intelligence. |
-| **motion** | Soft panel · optional gold node diagram fade |
+| **motion** | Statement rise · gold constellation diagram scale-in |
 
 ## Frame 4 — Protocol
 
@@ -56,48 +56,58 @@ Calm prosperity ledger. Sequential scene reveals timed to VO. Soft opacity + gen
 | --- | --- |
 | **id** | `04-protocol` |
 | **narration** | Today's protocol… Celebrate — identity integration is complete. |
-| **treatment** | Protocol |
+| **treatment** | Protocol (ritual steps) |
 | **label** | TODAY'S PROTOCOL |
-| **steps** | 1 Assess · 2 Identify · 3 Challenge · 4 Reinforce · 5 Celebrate |
-| **motion** | Step circles reveal one-by-one with VO |
+| **steps** | I Assess · II Identify · III Challenge · IV Reinforce · V Celebrate |
+| **motion** | Roman ordinals slide in one-by-one with VO |
 
-## Frame 5 — Pro Tip (+ identity practices cue)
+## Frame 5 — Practices
 
 | Field | Value |
 | --- | --- |
-| **id** | `05-pro-tip` |
-| **narration** | Your identity practices… external results follow automatically. |
-| **treatment** | Pro Tip (+ short practices strip) |
+| **id** | `05-practices` |
+| **narration** | Your identity practices… give from abundance. |
+| **treatment** | Practices litany |
+| **label** | IDENTITY PRACTICES |
+| **practices** | Morning affirmation · Decisions · Responses · Speak · Give from abundance |
+| **motion** | Sequential spark-marked lines |
+
+## Frame 6 — Pro Tip
+
+| Field | Value |
+| --- | --- |
+| **id** | `06-pro-tip` |
+| **narration** | Pro tip: Identity is the deepest level of change… |
+| **treatment** | Tip lockup |
 | **label** | PRO TIP |
 | **copy** | Identity is the deepest level of change. When who you ARE matches wealth, external results follow automatically. |
-| **practices** | Morning affirmation · Decisions · Responses · Conversations · Giving from abundance |
-| **motion** | Amethyst callout · practices fade under |
+| **motion** | Thin gold frame rise · faint lotus whisper |
 
-## Frame 6 — Teaching Points
+## Frame 7 — Teaching Points
 
 | Field | Value |
 | --- | --- |
-| **id** | `06-teaching` |
+| **id** | `07-teaching` |
 | **narration** | Remember these teaching points… forever. |
-| **treatment** | Teaching Points |
+| **treatment** | Teaching litany |
 | **label** | DAILY TEACHING POINTS |
 | **bullets** | You are a wealthy person now · Identity > behavior · Wealthy mindset is default · Integration complete · This is who you are forever |
-| **motion** | Sequential bullet fades |
+| **motion** | Sequential ordinal fades |
 
-## Frame 7 — Homework + Blessing
+## Frame 8 — Homework + Blessing
 
 | Field | Value |
 | --- | --- |
-| **id** | `07-homework` |
+| **id** | `08-homework` |
 | **narration** | Before you close… शुभं भवतु. |
 | **treatment** | Homework + Blessing |
 | **ctas** | Diary homework · WhatsApp mentor photo (+91 78880 48281) · Subscribe / like / share · fabselfhelp.com |
 | **contact** | fabselfhelp.com · tcprc.energyscience@gmail.com · +91 78880 48281 |
 | **blessing** | शुभं भवतु |
-| **motion** | CTA stack · then blessing hold 2–3s |
+| **motion** | CTA stack · halo + blessing hold 2–3s |
 
 ---
 
 ## Reveal order (locked)
 
-Cover → Focus → Science → Protocol → Pro Tip → Teaching → Homework / Blessing
+Cover → Focus → Science → Protocol → Practices → Pro Tip → Teaching → Homework / Blessing

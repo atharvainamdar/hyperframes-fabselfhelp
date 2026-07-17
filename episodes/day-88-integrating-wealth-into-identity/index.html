@@ -7,23 +7,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Noto+Sans+Devanagari:wght@700&family=Source+Sans+3:wght@400;600&family=Space+Grotesk:wght@500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Noto+Sans+Devanagari:wght@700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <style>
       :root {
-        --void: #0a0a0c;
-        --panel: #141418;
+        --celestial: #071825;
+        --celestial-mid: #0c2a38;
+        --teal-glow: #134a52;
         --gold: #c9a227;
         --gold-soft: #e8c547;
+        --gold-bright: #f0d78c;
         --gold-deep: #8b6914;
-        --amethyst: #6b3fa0;
-        --amethyst-soft: #9b6bc9;
+        --lotus: #d4a0a8;
         --flare: #f7f3e9;
         --flare-muted: #c4bba8;
-        --glass: rgba(255, 255, 255, 0.06);
-        --hairline: rgba(201, 162, 39, 0.35);
+        --hairline: rgba(201, 162, 39, 0.42);
+        --filigree: rgba(232, 197, 71, 0.55);
       }
       * {
         box-sizing: border-box;
@@ -32,7 +33,7 @@
         margin: 0;
         background: #000;
         color: var(--flare);
-        font-family: "Source Sans 3", sans-serif;
+        font-family: "Source Serif 4", Georgia, serif;
       }
       #root {
         position: relative;
@@ -45,288 +46,520 @@
         position: absolute;
         inset: 0;
       }
+
+      /* —— Celestial stage (linear + SVG only — avoid stacked radial-gradients for capture) —— */
       .scene-ground {
         position: absolute;
         inset: 0;
-        background: var(--void);
+        background: linear-gradient(165deg, #0d2c3a 0%, var(--celestial) 42%, #041018 100%);
       }
-      .bloom {
+      .scene-ground.rich {
+        background: linear-gradient(160deg, #123a48 0%, #0a2534 35%, var(--celestial) 70%, #030d14 100%);
+      }
+      .vignette {
         position: absolute;
-        width: 55%;
-        height: 55%;
-        top: -8%;
-        left: 22%;
-        background: radial-gradient(circle, rgba(201, 162, 39, 0.14) 0%, transparent 70%);
+        inset: 0;
+        box-shadow: inset 0 0 18cqw 6cqw rgba(0, 0, 0, 0.55);
         pointer-events: none;
       }
-      .bloom-amethyst {
-        position: absolute;
-        width: 40%;
-        height: 40%;
-        bottom: -5%;
-        right: -5%;
-        background: radial-gradient(circle, rgba(107, 63, 160, 0.12) 0%, transparent 70%);
-        pointer-events: none;
-      }
-      .watermark {
+      .halo {
         position: absolute;
         left: 50%;
-        top: 48%;
+        top: 38%;
+        width: 52cqw;
+        height: 52cqw;
         transform: translate(-50%, -50%);
-        width: 28cqw;
-        height: 28cqw;
-        opacity: 0.08;
-        object-fit: contain;
+        border-radius: 50%;
+        background: rgba(240, 215, 140, 0.1);
+        box-shadow:
+          0 0 8cqw 2cqw rgba(201, 162, 39, 0.14),
+          0 0 18cqw 6cqw rgba(201, 162, 39, 0.08);
         pointer-events: none;
       }
+      .stars {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.75;
+      }
+      .stars svg {
+        width: 100%;
+        height: 100%;
+      }
+      .filigree {
+        position: absolute;
+        inset: 3.2cqw 3.8cqw;
+        pointer-events: none;
+        border: 1px solid rgba(201, 162, 39, 0.22);
+      }
+      .filigree::before,
+      .filigree::after {
+        content: "";
+        position: absolute;
+        width: 4.2cqw;
+        height: 4.2cqw;
+        border-color: var(--filigree);
+        border-style: solid;
+      }
+      .filigree::before {
+        top: -1px;
+        left: -1px;
+        border-width: 2px 0 0 2px;
+      }
+      .filigree::after {
+        bottom: -1px;
+        right: -1px;
+        border-width: 0 2px 2px 0;
+      }
+      .filigree-tr,
+      .filigree-bl {
+        position: absolute;
+        width: 4.2cqw;
+        height: 4.2cqw;
+        border-color: var(--filigree);
+        border-style: solid;
+        pointer-events: none;
+      }
+      .filigree-tr {
+        top: 3.2cqw;
+        right: 3.8cqw;
+        border-width: 2px 2px 0 0;
+      }
+      .filigree-bl {
+        bottom: 3.2cqw;
+        left: 3.8cqw;
+        border-width: 0 0 2px 2px;
+      }
+
+      /* —— Portraits as medallions —— */
       .portrait {
         position: absolute;
-        top: 3.5cqw;
+        top: 4cqw;
         width: 11cqw;
         text-align: center;
+        z-index: 3;
       }
       .portrait.left {
-        left: 4cqw;
+        left: 4.5cqw;
       }
       .portrait.right {
-        right: 4cqw;
+        right: 4.5cqw;
+      }
+      .portrait .ring {
+        position: relative;
+        width: 10.5cqw;
+        height: 10.5cqw;
+        margin: 0 auto;
+        border-radius: 50%;
+        padding: 0.35cqw;
+        background: linear-gradient(145deg, var(--gold-bright), var(--gold-deep));
+        box-shadow:
+          0 0 0 1px rgba(240, 215, 140, 0.4),
+          0 0 1.8cqw rgba(201, 162, 39, 0.35);
+      }
+      .portrait .ring::after {
+        content: "";
+        position: absolute;
+        inset: 0.55cqw;
+        border-radius: 50%;
+        border: 1px solid rgba(7, 24, 37, 0.55);
+        pointer-events: none;
       }
       .portrait img {
-        width: 11cqw;
-        height: 11cqw;
+        width: 100%;
+        height: 100%;
         border-radius: 50%;
         object-fit: cover;
-        border: 2.5px solid var(--gold);
         display: block;
-        margin: 0 auto;
-        background: var(--panel);
+        background: var(--celestial-mid);
       }
       .portrait .badge {
-        margin-top: 0.7cqw;
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 12px;
+        margin-top: 0.85cqw;
+        font-family: "Cinzel", serif;
+        font-size: 11px;
         font-weight: 600;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--gold);
+      }
+
+      /* —— Cover —— */
+      .logo-mark {
+        position: absolute;
+        left: 50%;
+        top: 46%;
+        transform: translate(-50%, -50%);
+        width: 26cqw;
+        height: 26cqw;
+        opacity: 0.14;
+        object-fit: contain;
+        pointer-events: none;
       }
       .masthead {
         position: absolute;
         left: 50%;
-        top: 14%;
+        top: 16%;
         transform: translateX(-50%);
-        width: 58%;
+        width: 56%;
         text-align: center;
+        z-index: 2;
+      }
+      .day-kicker {
+        margin: 0 0 0.6cqw;
+        font-family: "Cinzel", serif;
+        font-size: 0.95cqw;
+        font-weight: 600;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--gold-soft);
       }
       .day-num {
         margin: 0;
-        font-family: "Cormorant Garamond", serif;
-        font-size: 5.5cqw;
+        font-family: "Cinzel", serif;
+        font-size: 5.4cqw;
         font-weight: 700;
-        line-height: 0.9;
-        color: var(--gold);
+        line-height: 0.95;
+        color: var(--gold-bright);
+        text-shadow: 0 0 2.5cqw rgba(201, 162, 39, 0.35);
+      }
+      .ornament {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2cqw;
+        margin: 1.4cqw auto 1.6cqw;
+        width: 42%;
+      }
+      .ornament span {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--filigree), transparent);
+      }
+      .ornament i {
+        width: 0.55cqw;
+        height: 0.55cqw;
+        border: 1px solid var(--gold-soft);
+        transform: rotate(45deg);
+        display: block;
+        flex: 0 0 auto;
       }
       .topic {
-        margin: 1.2cqw 0 0;
+        margin: 0;
         font-family: "Cormorant Garamond", serif;
-        font-size: 3.2cqw;
+        font-size: 3.15cqw;
         font-weight: 700;
-        line-height: 1.1;
+        line-height: 1.12;
         color: var(--flare);
       }
       .tagline {
-        margin: 1cqw 0 0;
+        margin: 1.1cqw 0 0;
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.5cqw;
+        font-size: 1.45cqw;
         font-weight: 600;
         font-style: italic;
         color: var(--gold-soft);
       }
       .program-footer {
         position: absolute;
-        left: 4cqw;
-        right: 4cqw;
-        bottom: 3.2cqw;
-        padding-top: 1.2cqw;
+        left: 5cqw;
+        right: 5cqw;
+        bottom: 3.4cqw;
+        padding-top: 1.1cqw;
         border-top: 1px solid var(--hairline);
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 13px;
+        font-family: "Cinzel", serif;
+        font-size: 12px;
         font-weight: 500;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: var(--flare-muted);
         display: flex;
         justify-content: space-between;
         gap: 2cqw;
+        z-index: 2;
       }
+
+      /* —— Content scenes —— */
       .content-wrap {
         position: absolute;
         left: 8cqw;
         right: 8cqw;
-        top: 12%;
+        top: 14%;
         bottom: 12%;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        z-index: 2;
       }
-      .col-label {
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 1.1cqw;
+      .section-label {
+        font-family: "Cinzel", serif;
+        font-size: 1.05cqw;
         font-weight: 600;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--gold);
-        margin: 0 0 2cqw;
+        margin: 0 0 2.2cqw;
+      }
+      .statement {
+        position: relative;
+        padding-left: 2.4cqw;
+        max-width: 78cqw;
+      }
+      .statement::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.3cqw;
+        bottom: 0.3cqw;
+        width: 2px;
+        background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
+        box-shadow: 0 0 1cqw rgba(201, 162, 39, 0.35);
       }
       .body-lg {
         margin: 0;
-        font-family: "Source Sans 3", sans-serif;
-        font-size: 2.4cqw;
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 2.55cqw;
         font-weight: 400;
-        line-height: 1.45;
+        line-height: 1.48;
         color: var(--flare);
-        max-width: 78cqw;
       }
       .body-md {
         margin: 0;
-        font-family: "Source Sans 3", sans-serif;
-        font-size: 2cqw;
-        line-height: 1.45;
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 2.1cqw;
+        line-height: 1.5;
         color: var(--flare);
-        max-width: 78cqw;
+        max-width: 72cqw;
       }
-      .panel {
-        background: var(--panel);
-        border: 1px solid var(--hairline);
-        border-radius: 12px;
-        padding: 3.5cqw 4cqw;
+      .em-gold {
+        color: var(--gold-soft);
+        font-style: italic;
+        font-weight: 600;
       }
-      .steps {
+      .day-chip {
+        position: absolute;
+        top: 3.8cqw;
+        right: 5cqw;
+        font-family: "Cinzel", serif;
+        font-size: 0.9cqw;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold);
+        border-bottom: 1px solid var(--hairline);
+        padding: 0.35cqw 0;
+        z-index: 3;
+      }
+
+      /* Science constellation */
+      .science-nodes {
+        position: absolute;
+        right: 7cqw;
+        top: 26%;
+        width: 24cqw;
+        height: 24cqw;
+        z-index: 2;
+      }
+      .science-nodes svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      /* Protocol ritual steps */
+      .ritual {
         list-style: none;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 1.6cqw;
+        gap: 0;
+        max-width: 82cqw;
       }
-      .steps li {
-        display: flex;
-        align-items: flex-start;
-        gap: 1.4cqw;
+      .ritual li {
+        display: grid;
+        grid-template-columns: 5.5cqw 1fr;
+        gap: 1.6cqw;
+        align-items: center;
+        padding: 1.15cqw 0;
+        border-bottom: 1px solid rgba(201, 162, 39, 0.18);
         font-size: 1.85cqw;
         line-height: 1.35;
         color: var(--flare);
       }
-      .step-circle {
-        flex: 0 0 2.4cqw;
-        width: 2.4cqw;
-        height: 2.4cqw;
-        border-radius: 50%;
-        background: var(--gold);
-        color: var(--void);
-        font-family: "Space Grotesk", sans-serif;
+      .ritual li:last-child {
+        border-bottom: none;
+      }
+      .ordinal {
+        font-family: "Cinzel", serif;
+        font-size: 1.35cqw;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--gold-bright);
+      }
+      .ritual strong {
+        color: var(--gold-soft);
         font-weight: 600;
-        font-size: 1.2cqw;
-        display: grid;
-        place-items: center;
-        margin-top: 0.2cqw;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.15em;
       }
-      .tip-callout {
-        border-left: 4px solid var(--amethyst);
-        background: var(--glass);
-        padding: 2.5cqw 3cqw;
-        border-radius: 0 12px 12px 0;
-      }
-      .practices {
-        margin-top: 2.5cqw;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1cqw;
-      }
-      .chip {
-        border: 1px solid var(--hairline);
-        color: var(--flare-muted);
-        font-size: 1.15cqw;
-        padding: 0.6cqw 1.2cqw;
-        border-radius: 999px;
-      }
-      .bullets {
+
+      /* Practices litany */
+      .litany {
         list-style: none;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 1.5cqw;
+        gap: 1.35cqw;
+        max-width: 78cqw;
       }
-      .bullets li {
+      .litany li {
         display: flex;
-        gap: 1.2cqw;
-        align-items: flex-start;
+        align-items: baseline;
+        gap: 1.4cqw;
         font-size: 2cqw;
+        line-height: 1.4;
+        color: var(--flare);
+      }
+      .spark {
+        flex: 0 0 auto;
+        width: 0.7cqw;
+        height: 0.7cqw;
+        margin-top: 0.65cqw;
+        transform: rotate(45deg);
+        border: 1px solid var(--gold-soft);
+        box-shadow: 0 0 0.8cqw rgba(201, 162, 39, 0.4);
+        background: rgba(240, 215, 140, 0.25);
+      }
+
+      /* Pro tip lockup */
+      .tip-frame {
+        position: relative;
+        max-width: 76cqw;
+        padding: 3.2cqw 3.8cqw;
+        border: 1px solid var(--hairline);
+        background: rgba(12, 42, 56, 0.45);
+      }
+      .tip-frame::before,
+      .tip-frame::after {
+        content: "";
+        position: absolute;
+        width: 2.2cqw;
+        height: 2.2cqw;
+        border-color: var(--gold-soft);
+        border-style: solid;
+      }
+      .tip-frame::before {
+        top: -1px;
+        left: -1px;
+        border-width: 2px 0 0 2px;
+      }
+      .tip-frame::after {
+        bottom: -1px;
+        right: -1px;
+        border-width: 0 2px 2px 0;
+      }
+      .lotus-whisper {
+        position: absolute;
+        right: 1.2cqw;
+        top: 1.2cqw;
+        width: 1.1cqw;
+        height: 1.1cqw;
+        border-radius: 50%;
+        border: 1px solid rgba(212, 160, 168, 0.65);
+        background: rgba(212, 160, 168, 0.2);
+        pointer-events: none;
+      }
+
+      /* Teaching */
+      .teach {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.4cqw;
+        max-width: 80cqw;
+      }
+      .teach li {
+        display: grid;
+        grid-template-columns: 3.2cqw 1fr;
+        gap: 1.4cqw;
+        align-items: baseline;
+        font-size: 2.05cqw;
         line-height: 1.35;
         color: var(--flare);
       }
-      .bullets li::before {
-        content: "";
-        width: 0.7cqw;
-        height: 0.7cqw;
-        border-radius: 50%;
-        background: var(--gold);
-        margin-top: 0.75cqw;
-        flex: 0 0 auto;
+      .teach .n {
+        font-family: "Cinzel", serif;
+        font-size: 1.15cqw;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 0.06em;
       }
+
+      /* Homework */
       .cta-stack {
         list-style: none;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 1.3cqw;
+        gap: 1.2cqw;
         font-size: 1.85cqw;
         color: var(--flare);
+        max-width: 78cqw;
       }
-      .cta-stack li strong {
+      .cta-stack li {
+        padding-left: 1.8cqw;
+        position: relative;
+      }
+      .cta-stack li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.75cqw;
+        width: 0.55cqw;
+        height: 0.55cqw;
+        transform: rotate(45deg);
+        border: 1px solid var(--gold);
+      }
+      .cta-stack strong {
         color: var(--gold-soft);
         font-weight: 600;
       }
       .contact {
-        margin-top: 2.2cqw;
-        font-size: 1.25cqw;
+        margin-top: 2cqw;
+        font-family: "Cinzel", serif;
+        font-size: 1cqw;
+        letter-spacing: 0.08em;
         color: var(--flare-muted);
-        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      .blessing-wrap {
+        margin-top: 2.4cqw;
+        text-align: center;
+        position: relative;
       }
       .blessing {
-        margin: 2.5cqw 0 0;
+        margin: 0;
         font-family: "Noto Sans Devanagari", "Cormorant Garamond", serif;
-        font-size: 4.2cqw;
+        font-size: 4.4cqw;
         font-weight: 700;
-        color: var(--gold);
-        text-align: center;
+        color: var(--gold-bright);
+        text-shadow: 0 0 2cqw rgba(201, 162, 39, 0.4);
+        position: relative;
+        z-index: 1;
       }
-      .day-chip {
+      .blessing-logo {
         position: absolute;
-        top: 3.5cqw;
-        right: 4cqw;
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 0.95cqw;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--gold);
-        border: 1px solid var(--hairline);
-        padding: 0.5cqw 1cqw;
-        border-radius: 999px;
-      }
-      .science-nodes {
-        position: absolute;
-        right: 8cqw;
-        top: 28%;
-        width: 22cqw;
-        height: 22cqw;
-        opacity: 0.55;
-      }
-      .science-nodes svg {
-        width: 100%;
-        height: 100%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 18cqw;
+        height: 18cqw;
+        opacity: 0.12;
+        object-fit: contain;
+        pointer-events: none;
       }
     </style>
   </head>
@@ -339,21 +572,43 @@
       data-height="1080"
       data-duration="111.61"
     >
-      <!-- Scene durations are placeholders; sync script updates after TTS -->
+      <!-- 1 · Cover -->
       <section id="scene-cover" class="clip" data-start="0" data-duration="10.96" data-track-index="1">
-        <div class="scene-ground"></div>
-        <div class="bloom"></div>
-        <img class="watermark" src="assets/brand/logo.png" alt="" />
+        <div class="scene-ground rich"></div>
+        <div class="stars" id="cover-stars" aria-hidden="true">
+          <svg viewBox="0 0 1920 1080" preserveAspectRatio="none">
+            <circle cx="154" cy="194" r="1.6" fill="#F7F3E9" opacity="0.75" />
+            <circle cx="422" cy="670" r="1.2" fill="#E8C547" opacity="0.55" />
+            <circle cx="672" cy="302" r="1.8" fill="#F7F3E9" opacity="0.55" />
+            <circle cx="922" cy="778" r="1.2" fill="#F7F3E9" opacity="0.45" />
+            <circle cx="1171" cy="151" r="1.5" fill="#E8C547" opacity="0.5" />
+            <circle cx="1421" cy="518" r="1.2" fill="#F7F3E9" opacity="0.55" />
+            <circle cx="1651" cy="238" r="1.9" fill="#F7F3E9" opacity="0.65" />
+            <circle cx="1766" cy="734" r="1.2" fill="#E8C547" opacity="0.4" />
+            <circle cx="269" cy="454" r="1.2" fill="#F7F3E9" opacity="0.4" />
+            <circle cx="768" cy="950" r="1.5" fill="#F7F3E9" opacity="0.35" />
+            <circle cx="1056" cy="432" r="1.2" fill="#E8C547" opacity="0.35" />
+            <circle cx="1306" cy="886" r="1.2" fill="#F7F3E9" opacity="0.4" />
+          </svg>
+        </div>
+        <div class="halo" id="cover-halo"></div>
+        <div class="vignette"></div>
+        <div class="filigree"></div>
+        <div class="filigree-tr"></div>
+        <div class="filigree-bl"></div>
+        <img class="logo-mark" id="cover-logo" src="assets/brand/logo.png" alt="" />
         <div class="portrait left" id="cover-cofounder">
-          <img src="assets/brand/co-founder.png" alt="Co-founder" />
+          <div class="ring"><img src="assets/brand/co-founder.png" alt="Co-founder" /></div>
           <div class="badge">Co-Founder</div>
         </div>
         <div class="portrait right" id="cover-founder">
-          <img src="assets/brand/founder.png" alt="Founder" />
+          <div class="ring"><img src="assets/brand/founder.png" alt="Founder" /></div>
           <div class="badge">Founder</div>
         </div>
         <div class="masthead" id="cover-masthead">
+          <p class="day-kicker" data-layout-allow-overlap>Sampurna Samruddhi Upasana</p>
           <p class="day-num">DAY 88</p>
+          <div class="ornament" id="cover-ornament"><span></span><i></i><span></span></div>
           <h1 class="topic">Integrating Wealth Into Identity</h1>
           <p class="tagline">The final integration — wealth becomes who you are</p>
         </div>
@@ -363,116 +618,188 @@
         </div>
       </section>
 
-      <section id="scene-focus" class="clip" data-start="10.96" data-duration="13.95" data-track-index="1">
+      <!-- 2 · Focus -->
+      <section id="scene-focus" class="clip" data-start="10.96" data-duration="12.95" data-track-index="1">
         <div class="scene-ground"></div>
-        <div class="bloom"></div>
+        <div class="vignette"></div>
+        <div class="filigree"></div>
+        <div class="filigree-tr"></div>
+        <div class="filigree-bl"></div>
         <div class="day-chip">Day 88</div>
         <div class="content-wrap">
-          <div class="panel" id="focus-panel">
-            <p class="col-label">Today's Focus</p>
+          <p class="section-label" id="focus-label">Today's Focus</p>
+          <div class="statement" id="focus-panel">
             <p class="body-lg">
-              Wealth is no longer something you're doing — it's who you <em style="color: var(--gold-soft); font-style: italic">are</em>.
-              This final week locks wealth into your identity permanently.
+              Wealth is no longer something you're doing — it's who you
+              <span class="em-gold">are</span>. This final week locks wealth into your identity
+              permanently.
             </p>
           </div>
         </div>
       </section>
 
-      <section id="scene-science" class="clip" data-start="24.91" data-duration="23.92" data-track-index="1">
+      <!-- 3 · Science -->
+      <section id="scene-science" class="clip" data-start="23.91" data-duration="21.92" data-track-index="1">
         <div class="scene-ground"></div>
-        <div class="bloom-amethyst"></div>
+        <div class="vignette"></div>
+        <div class="filigree"></div>
+        <div class="filigree-tr"></div>
+        <div class="filigree-bl"></div>
         <div class="day-chip">Day 88</div>
-        <div class="content-wrap" style="right: 32cqw">
-          <div class="panel" id="science-panel">
-            <p class="col-label">The Science</p>
+        <div class="content-wrap" style="right: 34cqw">
+          <p class="section-label" id="science-label">The Science</p>
+          <div class="statement" id="science-panel">
             <p class="body-md">
-              By Day 88, neural pathways for wealth thinking are extremely strong.
-              Integration means this identity holds under stress — so
-              “I am someone wealthy” feels as natural as kindness or intelligence.
+              By Day 88, neural pathways for wealth thinking are extremely strong. Integration means
+              this identity holds under stress — so “I am someone wealthy” feels as natural as kindness
+              or intelligence.
             </p>
           </div>
         </div>
         <div class="science-nodes" id="science-nodes" aria-hidden="true">
-          <svg viewBox="0 0 200 200" fill="none">
-            <circle cx="100" cy="100" r="18" stroke="#C9A227" stroke-width="2" />
-            <circle cx="40" cy="60" r="10" stroke="#9B6BC9" stroke-width="2" />
-            <circle cx="160" cy="55" r="10" stroke="#9B6BC9" stroke-width="2" />
-            <circle cx="45" cy="145" r="10" stroke="#C9A227" stroke-width="2" />
-            <circle cx="155" cy="150" r="10" stroke="#C9A227" stroke-width="2" />
-            <path d="M55 65 L85 92 M145 62 L115 90 M55 140 L85 112 M145 145 L115 112" stroke="#C9A227" stroke-opacity="0.5" stroke-width="1.5" />
+          <svg viewBox="0 0 220 220" fill="none">
+            <circle cx="110" cy="110" r="22" stroke="#F0D78C" stroke-width="1.8" opacity="0.9" />
+            <circle cx="110" cy="110" r="8" fill="#C9A227" opacity="0.75" />
+            <circle cx="42" cy="58" r="11" stroke="#E8C547" stroke-width="1.5" />
+            <circle cx="178" cy="52" r="11" stroke="#E8C547" stroke-width="1.5" />
+            <circle cx="38" cy="158" r="11" stroke="#C9A227" stroke-width="1.5" />
+            <circle cx="182" cy="164" r="11" stroke="#C9A227" stroke-width="1.5" />
+            <circle cx="110" cy="28" r="7" stroke="#D4A0A8" stroke-width="1.2" opacity="0.7" />
+            <path
+              d="M52 64 L92 98 M168 60 L128 96 M50 152 L92 124 M170 158 L128 126 M110 35 L110 88"
+              stroke="#C9A227"
+              stroke-opacity="0.45"
+              stroke-width="1.4"
+            />
+            <circle cx="42" cy="58" r="2.5" fill="#F0D78C" />
+            <circle cx="178" cy="52" r="2.5" fill="#F0D78C" />
+            <circle cx="38" cy="158" r="2.5" fill="#E8C547" />
+            <circle cx="182" cy="164" r="2.5" fill="#E8C547" />
           </svg>
         </div>
       </section>
 
-      <section id="scene-protocol" class="clip" data-start="48.83" data-duration="21.92" data-track-index="1">
+      <!-- 4 · Protocol -->
+      <section id="scene-protocol" class="clip" data-start="45.83" data-duration="19.93" data-track-index="1">
         <div class="scene-ground"></div>
-        <div class="bloom"></div>
+        <div class="vignette"></div>
+        <div class="filigree"></div>
+        <div class="filigree-tr"></div>
+        <div class="filigree-bl"></div>
         <div class="day-chip">Day 88</div>
         <div class="content-wrap">
-          <p class="col-label" id="protocol-label">Today's Protocol</p>
-          <ul class="steps">
-            <li id="step-1"><span class="step-circle">1</span><span><strong style="color: var(--gold-soft)">Assess</strong> — Does “I am a wealthy person” feel true?</span></li>
-            <li id="step-2"><span class="step-circle">2</span><span><strong style="color: var(--gold-soft)">Identify</strong> — Any remaining limiting beliefs</span></li>
-            <li id="step-3"><span class="step-circle">3</span><span><strong style="color: var(--gold-soft)">Challenge</strong> — Where does the old identity resurface?</span></li>
-            <li id="step-4"><span class="step-circle">4</span><span><strong style="color: var(--gold-soft)">Reinforce</strong> — Daily practices that cement identity</span></li>
-            <li id="step-5"><span class="step-circle">5</span><span><strong style="color: var(--gold-soft)">Celebrate</strong> — Identity integration is complete</span></li>
+          <p class="section-label" id="protocol-label">Today's Protocol</p>
+          <ul class="ritual">
+            <li id="step-1">
+              <span class="ordinal">I</span>
+              <span><strong>Assess</strong> — Does “I am a wealthy person” feel true?</span>
+            </li>
+            <li id="step-2">
+              <span class="ordinal">II</span>
+              <span><strong>Identify</strong> — Any remaining limiting beliefs</span>
+            </li>
+            <li id="step-3">
+              <span class="ordinal">III</span>
+              <span><strong>Challenge</strong> — Where does the old identity resurface?</span>
+            </li>
+            <li id="step-4">
+              <span class="ordinal">IV</span>
+              <span><strong>Reinforce</strong> — Daily practices that cement identity</span>
+            </li>
+            <li id="step-5">
+              <span class="ordinal">V</span>
+              <span><strong>Celebrate</strong> — Identity integration is complete</span>
+            </li>
           </ul>
         </div>
       </section>
 
-      <section id="scene-tip" class="clip" data-start="70.75" data-duration="17.94" data-track-index="1">
+      <!-- 5 · Practices -->
+      <section id="scene-practices" class="clip" data-start="65.76" data-duration="13.95" data-track-index="1">
         <div class="scene-ground"></div>
-        <div class="bloom-amethyst"></div>
+        <div class="vignette"></div>
+        <div class="filigree"></div>
+        <div class="filigree-tr"></div>
+        <div class="filigree-bl"></div>
         <div class="day-chip">Day 88</div>
         <div class="content-wrap">
-          <div class="tip-callout" id="tip-panel">
-            <p class="col-label">Pro Tip</p>
+          <p class="section-label" id="practices-label">Identity Practices</p>
+          <ul class="litany">
+            <li id="practice-1"><span class="spark"></span><span>Morning: “I am a wealth creator.”</span></li>
+            <li id="practice-2"><span class="spark"></span><span>Decide from a wealthy identity.</span></li>
+            <li id="practice-3"><span class="spark"></span><span>Respond as a wealthy person.</span></li>
+            <li id="practice-4"><span class="spark"></span><span>Speak from abundance.</span></li>
+            <li id="practice-5"><span class="spark"></span><span>Give from abundance.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 6 · Pro Tip -->
+      <section id="scene-tip" class="clip" data-start="79.71" data-duration="9.97" data-track-index="1">
+        <div class="scene-ground"></div>
+        <div class="vignette"></div>
+        <div class="filigree"></div>
+        <div class="filigree-tr"></div>
+        <div class="filigree-bl"></div>
+        <div class="day-chip">Day 88</div>
+        <div class="content-wrap">
+          <div class="tip-frame" id="tip-panel">
+            <div class="lotus-whisper"></div>
+            <p class="section-label">Pro Tip</p>
             <p class="body-lg">
-              Identity is the deepest level of change. When who you are matches wealth,
-              external results follow automatically.
+              Identity is the deepest level of change. When who you are matches wealth, external
+              results follow automatically.
             </p>
-            <div class="practices" id="tip-practices">
-              <span class="chip">Morning: I am a wealth creator</span>
-              <span class="chip">Decide from wealth identity</span>
-              <span class="chip">Respond as a wealthy person</span>
-              <span class="chip">Speak from abundance</span>
-              <span class="chip">Give from abundance</span>
-            </div>
           </div>
         </div>
       </section>
 
-      <section id="scene-teaching" class="clip" data-start="88.69" data-duration="11.96" data-track-index="1">
+      <!-- 7 · Teaching -->
+      <section id="scene-teaching" class="clip" data-start="89.68" data-duration="11.96" data-track-index="1">
         <div class="scene-ground"></div>
-        <div class="bloom"></div>
+        <div class="vignette"></div>
+        <div class="filigree"></div>
+        <div class="filigree-tr"></div>
+        <div class="filigree-bl"></div>
         <div class="day-chip">Day 88</div>
         <div class="content-wrap">
-          <p class="col-label" id="teach-label">Daily Teaching Points</p>
-          <ul class="bullets">
-            <li id="bullet-1">You are a wealthy person now</li>
-            <li id="bullet-2">Identity is more powerful than behavior</li>
-            <li id="bullet-3">A wealthy person's mindset is your default</li>
-            <li id="bullet-4">You have completed identity integration</li>
-            <li id="bullet-5">This is who you are — forever</li>
+          <p class="section-label" id="teach-label">Daily Teaching Points</p>
+          <ul class="teach">
+            <li id="bullet-1"><span class="n">01</span><span>You are a wealthy person now</span></li>
+            <li id="bullet-2"><span class="n">02</span><span>Identity is more powerful than behavior</span></li>
+            <li id="bullet-3"><span class="n">03</span><span>A wealthy person's mindset is your default</span></li>
+            <li id="bullet-4"><span class="n">04</span><span>You have completed identity integration</span></li>
+            <li id="bullet-5"><span class="n">05</span><span>This is who you are — forever</span></li>
           </ul>
         </div>
       </section>
 
-      <section id="scene-homework" class="clip" data-start="100.65" data-duration="10.96" data-track-index="1">
-        <div class="scene-ground"></div>
-        <div class="bloom"></div>
+      <!-- 8 · Homework + Blessing -->
+      <section id="scene-homework" class="clip" data-start="101.64" data-duration="9.97" data-track-index="1">
+        <div class="scene-ground rich"></div>
+        <div class="halo" id="hw-halo"></div>
+        <div class="vignette"></div>
+        <div class="filigree"></div>
+        <div class="filigree-tr"></div>
+        <div class="filigree-bl"></div>
         <div class="content-wrap" style="text-align: left">
-          <p class="col-label" id="hw-label">Tonight's Homework</p>
+          <p class="section-label" id="hw-label">Tonight's Homework</p>
           <ul class="cta-stack" id="hw-stack">
             <li>Write today's learnings in your <strong>diary</strong></li>
-            <li>Before sleep, send a photo of your notes on WhatsApp: <strong>+91 78880 48281</strong></li>
+            <li>
+              Before sleep, send a photo of your notes on WhatsApp:
+              <strong>+91 78880 48281</strong>
+            </li>
             <li><strong>Subscribe</strong>, like, and share</li>
             <li>Visit <strong>fabselfhelp.com</strong></li>
           </ul>
           <p class="contact" id="hw-contact">
             fabselfhelp.com · tcprc.energyscience@gmail.com · +91 78880 48281
           </p>
-          <p class="blessing" id="hw-blessing">शुभं भवतु</p>
+          <div class="blessing-wrap" id="hw-blessing-wrap">
+            <img class="blessing-logo" src="assets/brand/logo.png" alt="" />
+            <p class="blessing" id="hw-blessing">शुभं भवतु</p>
+          </div>
         </div>
       </section>
 
@@ -489,38 +816,51 @@
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
 
-      tl.from("#cover-cofounder", { opacity: 0, y: 12, duration: 0.9, ease: "sine.inOut" }, 0.2);
-      tl.from("#cover-founder", { opacity: 0, y: 12, duration: 0.9, ease: "sine.inOut" }, 0.35);
-      tl.from("#cover-masthead .day-num", { opacity: 0, y: 24, duration: 0.9, ease: "sine.inOut" }, 0.45);
-      tl.from("#cover-masthead .topic", { opacity: 0, y: 18, duration: 0.85, ease: "sine.inOut" }, 0.7);
-      tl.from("#cover-masthead .tagline", { opacity: 0, y: 12, duration: 0.8, ease: "sine.inOut" }, 1);
+      tl.from("#cover-halo", { opacity: 0, scale: 0.86, duration: 1.35, ease: "power2.out" }, 0.1);
+      tl.from("#cover-logo", { opacity: 0, scale: 0.92, duration: 1.1, ease: "power2.out" }, 0.25);
+      tl.from("#cover-cofounder", { opacity: 0, y: 18, duration: 1.0, ease: "power2.out" }, 0.35);
+      tl.from("#cover-founder", { opacity: 0, y: 18, duration: 1.0, ease: "power2.out" }, 0.5);
+      tl.from("#cover-masthead .day-kicker", { opacity: 0, y: 10, duration: 0.7, ease: "power2.out" }, 0.55);
+      tl.from("#cover-masthead .day-num", { opacity: 0, y: 28, duration: 1.05, ease: "power2.out" }, 0.7);
+      tl.from("#cover-ornament", { opacity: 0, scaleX: 0.4, duration: 0.7, ease: "power2.out" }, 1);
+      tl.from("#cover-masthead .topic", { opacity: 0, y: 16, duration: 0.9, ease: "power2.out" }, 1.15);
+      tl.from("#cover-masthead .tagline", { opacity: 0, y: 12, duration: 0.8, ease: "power2.out" }, 1.4);
 
-      tl.from("#focus-panel", { opacity: 0, y: 16, duration: 0.9, ease: "sine.inOut" }, 11.16);
+      tl.from("#focus-label", { opacity: 0, x: -14, duration: 0.65, ease: "power2.out" }, 11.16);
+      tl.from("#focus-panel", { opacity: 0, y: 18, duration: 1.0, ease: "power2.out" }, 11.41);
 
-      tl.from("#science-panel", { opacity: 0, y: 16, duration: 0.9, ease: "sine.inOut" }, 25.11);
-      tl.from("#science-nodes", { opacity: 0, scale: 0.92, duration: 1.0, ease: "sine.inOut" }, 25.51);
+      tl.from("#science-label", { opacity: 0, x: -12, duration: 0.6, ease: "power2.out" }, 24.11);
+      tl.from("#science-panel", { opacity: 0, y: 16, duration: 0.95, ease: "power2.out" }, 24.36);
+      tl.from("#science-nodes", { opacity: 0, scale: 0.88, duration: 1.1, ease: "power2.out" }, 24.71);
 
-      tl.from("#protocol-label", { opacity: 0, y: 10, duration: 0.6, ease: "sine.inOut" }, 48.98);
-      tl.from("#step-1", { opacity: 0, y: 12, duration: 0.55, ease: "sine.inOut" }, 49.33);
-      tl.from("#step-2", { opacity: 0, y: 12, duration: 0.55, ease: "sine.inOut" }, 52.78);
-      tl.from("#step-3", { opacity: 0, y: 12, duration: 0.55, ease: "sine.inOut" }, 56.72);
-      tl.from("#step-4", { opacity: 0, y: 12, duration: 0.55, ease: "sine.inOut" }, 60.67);
-      tl.from("#step-5", { opacity: 0, y: 12, duration: 0.55, ease: "sine.inOut" }, 64.61);
+      tl.from("#protocol-label", { opacity: 0, y: 10, duration: 0.55, ease: "power2.out" }, 45.98);
+      tl.from("#step-1", { opacity: 0, x: -16, duration: 0.55, ease: "power2.out" }, 46.33);
+      tl.from("#step-2", { opacity: 0, x: -16, duration: 0.55, ease: "power2.out" }, 49.42);
+      tl.from("#step-3", { opacity: 0, x: -16, duration: 0.55, ease: "power2.out" }, 53);
+      tl.from("#step-4", { opacity: 0, x: -16, duration: 0.55, ease: "power2.out" }, 56.59);
+      tl.from("#step-5", { opacity: 0, x: -16, duration: 0.55, ease: "power2.out" }, 60.18);
 
-      tl.from("#tip-panel", { opacity: 0, y: 14, duration: 0.85, ease: "sine.inOut" }, 70.95);
-      tl.from("#tip-practices .chip", { opacity: 0, y: 8, duration: 0.45, stagger: 0.12, ease: "sine.inOut" }, 72.25);
+      tl.from("#practices-label", { opacity: 0, y: 10, duration: 0.55, ease: "power2.out" }, 65.91);
+      tl.from("#practice-1", { opacity: 0, y: 12, duration: 0.5, ease: "power2.out" }, 66.26);
+      tl.from("#practice-2", { opacity: 0, y: 12, duration: 0.5, ease: "power2.out" }, 68.83);
+      tl.from("#practice-3", { opacity: 0, y: 12, duration: 0.5, ease: "power2.out" }, 71.06);
+      tl.from("#practice-4", { opacity: 0, y: 12, duration: 0.5, ease: "power2.out" }, 73.29);
+      tl.from("#practice-5", { opacity: 0, y: 12, duration: 0.5, ease: "power2.out" }, 75.52);
 
-      tl.from("#teach-label", { opacity: 0, y: 10, duration: 0.55, ease: "sine.inOut" }, 88.84);
-      tl.from("#bullet-1", { opacity: 0, y: 10, duration: 0.45, ease: "sine.inOut" }, 89.19);
-      tl.from("#bullet-2", { opacity: 0, y: 10, duration: 0.45, ease: "sine.inOut" }, 90.69);
-      tl.from("#bullet-3", { opacity: 0, y: 10, duration: 0.45, ease: "sine.inOut" }, 92.19);
-      tl.from("#bullet-4", { opacity: 0, y: 10, duration: 0.45, ease: "sine.inOut" }, 93.69);
-      tl.from("#bullet-5", { opacity: 0, y: 10, duration: 0.45, ease: "sine.inOut" }, 95.19);
+      tl.from("#tip-panel", { opacity: 0, y: 16, scale: 0.97, duration: 0.95, ease: "power2.out" }, 79.91);
 
-      tl.from("#hw-label", { opacity: 0, y: 10, duration: 0.55, ease: "sine.inOut" }, 100.8);
-      tl.from("#hw-stack li", { opacity: 0, y: 10, duration: 0.45, stagger: 0.25, ease: "sine.inOut" }, 101.15);
-      tl.from("#hw-contact", { opacity: 0, duration: 0.5, ease: "sine.inOut" }, 102.85);
-      tl.from("#hw-blessing", { opacity: 0, y: 16, duration: 0.9, ease: "sine.inOut" }, 107.41);
+      tl.from("#teach-label", { opacity: 0, y: 10, duration: 0.55, ease: "power2.out" }, 89.83);
+      tl.from("#bullet-1", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 90.18);
+      tl.from("#bullet-2", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 92.31);
+      tl.from("#bullet-3", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 94.22);
+      tl.from("#bullet-4", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 96.14);
+      tl.from("#bullet-5", { opacity: 0, y: 12, duration: 0.45, ease: "power2.out" }, 98.05);
+
+      tl.from("#hw-label", { opacity: 0, y: 10, duration: 0.55, ease: "power2.out" }, 101.79);
+      tl.from("#hw-stack li", { opacity: 0, y: 10, duration: 0.45, stagger: 0.22, ease: "power2.out" }, 102.14);
+      tl.from("#hw-contact", { opacity: 0, duration: 0.5, ease: "power2.out" }, 103.64);
+      tl.from("#hw-halo", { opacity: 0, scale: 0.9, duration: 1.0, ease: "power2.out" }, 107.11);
+      tl.from("#hw-blessing", { opacity: 0, y: 18, duration: 1.0, ease: "power2.out" }, 107.41);
 
       window.__timelines["main"] = tl;
     </script>
